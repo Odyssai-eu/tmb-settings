@@ -1,0 +1,7 @@
+{
+  "settings": [
+    "eco",
+    "full"
+  ],
+  "default": "eco"
+}
