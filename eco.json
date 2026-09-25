@@ -95,7 +95,7 @@
       "key": "code_general",
       "label": "Code général",
       "model": "qwen3.8-prev-or",
-      "description": "Code applicatif dans un langage SANS axe dédié (Go, Rust, Java, C/C++, JS/TS backend, shell…). Seau par défaut : ne PAS choisir si la tâche est en Swift (→ swift), Python (→ python), ou front React (→ react). À n'utiliser QUE si aucun axe de langage spécifique ne s'applique.",
+      "description": "Code applicatif dans un langage SANS axe dédié (Go, Rust, Java, C/C++, JS/TS backend, shell…). Seau par défaut : ne PAS choisir si la tâche est en Swift (→ swift), Python (→ python), ou front React (→ react). À n'utiliser QUE si aucun axe de langage spécifique ne s'applique.Pas ici si c'est une commande shell ou un edit mécanique d'une ligne (→ fast_tools",
       "bench": {
         "score": 97.8,
         "source": "TMB"
