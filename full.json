@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-09-23",
+  "updated": "2026-09-25",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -153,7 +153,7 @@
       "key": "refactoring",
       "label": "Refactoring",
       "model": "mercury-2-or",
-      "description": "Restructuration de code SAIN sans changer son comportement : extraire, renommer, dédupliquer, moderniser, améliorer la lisibilité/l'archi. Pas ici si on corrige un bug (→ debug) ou si on écrit une fonctionnalité neuve (→ axe du langage).",
+      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
