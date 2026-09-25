@@ -114,7 +114,7 @@
       "key": "debug",
       "label": "Debug",
       "model": "glm-5.3-flash-or",
-      "description": "Diagnostic et correction d'un bug dans du code existant : stack trace, comportement inattendu, test qui casse, régression. Choisir cet axe quand l'intention est RÉPARER/COMPRENDRE un défaut, quel que soit le langage. Pas ici si on écrit du code neuf (→ axe du langage) ou si on restructure du code sain (→ refactoring).",
+      "description": "Diagnostic et correction d'un bug dans du code existant : stack trace, comportement inattendu, test qui casse, régression. Choisir cet axe quand l'intention est RÉPARER/COMPRENDRE un défaut, quel que soit le langage. Pas ici si on écrit du code neuf (→ axe du langage), si le code est en Swift (→ swift) : pour Swift, le langage prime. ou si on restructure du code sain (→ refactoring).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
