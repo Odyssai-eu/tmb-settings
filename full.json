@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-09-25",
+  "updated": "2026-09-26",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -126,12 +126,10 @@
     {
       "key": "react",
       "label": "React / front",
-      "model": "nex-n2-pro-or",
+      "model": "pareto-or",
       "description": "Front-end web : React, JSX/TSX, composants UI, hooks, état client, Next.js, styling. Pas ici si c'est du backend JS/TS (→ code_general) ou du natif Apple (→ swift).",
       "bench": {
-        "score": 98.0,
-        "coverage": 1.0,
-        "n_tests": 1,
+        "score": 98,
         "source": "TMB"
       },
       "verified": true
@@ -241,11 +239,6 @@
       "or": "z-ai/glm-5.3-flash",
       "kind": "cloud"
     },
-    "nex-n2-pro-or": {
-      "name": "Nex N2 pro OR",
-      "or": "nex-agi/nex-n2-pro",
-      "kind": "cloud"
-    },
     "mercury-2-or": {
       "name": "mercury-2-OR",
       "or": "inception/mercury-2",
@@ -254,6 +247,11 @@
     "deepseek-v4-flash-0731-or": {
       "name": "deepseek-v4-flash-0731 OR",
       "or": "deepseek/deepseek-v4-flash-0731",
+      "kind": "cloud"
+    },
+    "pareto-or": {
+      "name": "pareto-OR",
+      "or": "unbiased/pareto",
       "kind": "cloud"
     }
   },
