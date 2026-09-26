@@ -1,10 +1,10 @@
 {
-  "name": "eco",
-  "updated": "2026-09-25",
+  "name": "setting",
+  "updated": "2026-09-26",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
-    "name": "inception/mercury-2",
+    "name": "Mercury-2",
     "or": "inception/mercury-2"
   },
   "axes": [
@@ -70,7 +70,7 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "deepseek-v4-flash-or",
+      "model": "longcat-2.0-or",
       "description": "Calcul numérique, mathématiques, manipulation de données structurées, tableurs, conversions, estimations chiffrées. Pas ici si le raisonnement est qualitatif (→ reasoning) ou si on écrit un script qui calcule (→ python).",
       "bench": {
         "score": 100,
@@ -94,10 +94,10 @@
     {
       "key": "code_general",
       "label": "Code général",
-      "model": "qwen3.8-prev-or",
+      "model": "glm-5.3-flash-or",
       "description": "Code applicatif dans un langage SANS axe dédié (Go, Rust, Java, C/C++, JS/TS backend, shell…). Seau par défaut : ne PAS choisir si la tâche est en Swift (→ swift), Python (→ python), ou front React (→ react). À n'utiliser QUE si aucun axe de langage spécifique ne s'applique.Pas ici si c'est une commande shell ou un edit mécanique d'une ligne (→ fast_tools",
       "bench": {
-        "score": 97.8,
+        "score": 97.6,
         "source": "TMB"
       },
       "verified": true
@@ -118,7 +118,7 @@
     {
       "key": "react",
       "label": "React / front",
-      "model": "deepseek-v4-flash-0731-or",
+      "model": "pareto-or",
       "description": "Front-end web : React, JSX/TSX, composants UI, hooks, état client, Next.js, styling. Pas ici si c'est du backend JS/TS (→ code_general) ou du natif Apple (→ swift).",
       "bench": {
         "score": 98,
@@ -130,7 +130,7 @@
       "key": "swift",
       "label": "Swift",
       "model": "qwen3.8-prev-or",
-      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
+      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche.",
       "bench": {
         "score": 96.5,
         "source": "TMB"
@@ -141,7 +141,7 @@
       "key": "refactoring",
       "label": "Refactoring",
       "model": "mercury-2-or",
-      "description": "Restructuration de code SAIN sans changer son comportement : extraire, renommer, dédupliquer, moderniser, améliorer la lisibilité/l'archi. Pas ici si on corrige un bug (→ debug) ou si on écrit une fonctionnalité neuve (→ axe du langage).",
+      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -229,14 +229,19 @@
       "or": "deepseek/deepseek-v4-flash-0731",
       "kind": "cloud"
     },
+    "pareto-or": {
+      "name": "pareto-OR",
+      "or": "unbiased/pareto",
+      "kind": "cloud"
+    },
     "nemotron3-super-or": {
       "name": "nemotron3 super OR",
       "or": "nvidia/nemotron-3-ultra-550b-a55b",
       "kind": "cloud"
     },
-    "deepseek-v4-flash-or": {
-      "name": "deepseek v4 flash OR",
-      "or": "deepseek/deepseek-v4-flash",
+    "longcat-2.0-or": {
+      "name": "longcat-2.0 OR",
+      "or": "meituan/longcat-2.0",
       "kind": "cloud"
     },
     "qwen3.8-prev-or": {
