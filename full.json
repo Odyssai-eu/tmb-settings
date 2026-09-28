@@ -1,12 +1,13 @@
 {
   "name": "setting",
-  "updated": "2026-09-26",
+  "updated": "2026-09-28",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
     "name": "Mercury-2",
     "or": "inception/mercury-2"
   },
+  "decider_model": null,
   "axes": [
     {
       "key": "creative",
@@ -24,10 +25,12 @@
     {
       "key": "redac_pro",
       "label": "Rédaction pro / business",
-      "model": "deepseek-v4-flash-0731-or",
+      "model": "qwen3.8-prev-or",
       "description": "Rédaction professionnelle structurée destinée à une décision ou une communication : note de synthèse, recommandation, rapport, argumentaire COMEX, document corporate. Pas ici si c'est de la fiction (→ creative) ou une spec technique pour un exécutant (→ plan_spec).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -35,7 +38,7 @@
     {
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
-      "model": "kimi-k3-or",
+      "model": "inkling-or",
       "description": "Conformité RGPD / protection des données / vie privée en droit européen : analyse de traitements, DPA, mentions légales, registre, bases légales. Pas ici si la question juridique dépasse le RGPD ou couvre plusieurs juridictions (→ legal_complex).",
       "bench": {
         "score": 100.0,
@@ -48,7 +51,7 @@
     {
       "key": "legal_complex",
       "label": "Conformité multi-jur.",
-      "model": "muse-spark-1.2-or",
+      "model": "mimo-v2.6-pro-or",
       "description": "Analyse juridique complexe ou multi-juridictionnelle : contrats, conformité hors-RGPD, comparaison de droits, raisonnement légal nuancé. Pas ici si c'est strictement RGPD/données personnelles (→ legal_rgpd).",
       "bench": {
         "score": 100.0,
@@ -61,7 +64,7 @@
     {
       "key": "reasoning",
       "label": "Raisonnement / logique",
-      "model": "deepseek-v4-flash-0731-max-or",
+      "model": "qwen3.8-prev-or",
       "description": "Raisonnement pur, logique, déduction, énigmes, analyse argumentée non-juridique et non-calculatoire. Pas ici si la réponse repose sur du calcul numérique/structuré (→ calc) ou si le livrable est du code (→ axes code).",
       "bench": {
         "score": 100.0,
@@ -74,7 +77,7 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "kimi-k2.6-or",
+      "model": "kat-coder-pro-v2.5-or",
       "description": "Calcul numérique, mathématiques, manipulation de données structurées, tableurs, conversions, estimations chiffrées. Pas ici si le raisonnement est qualitatif (→ reasoning) ou si on écrit un script qui calcule (→ python).",
       "bench": {
         "score": 100.0,
@@ -87,10 +90,10 @@
     {
       "key": "python",
       "label": "Python / scripts",
-      "model": "glm-5.3-flash-or",
+      "model": "mimo-v2.6-pro-or",
       "description": "Tâche dont le livrable est du code Python : scripts, data, automatisation, ML, backend Python. Choisir cet axe dès que le langage cible est Python. Pas ici si c'est un autre langage (→ code_general / swift / react).",
       "bench": {
-        "score": 97.8,
+        "score": 99.2,
         "coverage": 1.0,
         "n_tests": 4,
         "source": "TMB"
@@ -100,10 +103,10 @@
     {
       "key": "code_general",
       "label": "Code général",
-      "model": "kimi-k3-or",
+      "model": "qwen3.8-max-prime-or",
       "description": "Code applicatif dans un langage SANS axe dédié (Go, Rust, Java, C/C++, JS/TS backend, shell…). Seau par défaut : ne PAS choisir si la tâche est en Swift (→ swift), Python (→ python), ou front React (→ react). À n'utiliser QUE si aucun axe de langage spécifique ne s'applique.Pas ici si c'est une commande shell ou un edit mécanique d'une ligne (→ fast_tools",
       "bench": {
-        "score": 97.9,
+        "score": 99.2,
         "coverage": 1.0,
         "n_tests": 10,
         "source": "TMB"
@@ -113,7 +116,7 @@
     {
       "key": "debug",
       "label": "Debug",
-      "model": "glm-5.3-flash-or",
+      "model": "qwen3.8-prev-or",
       "description": "Diagnostic et correction d'un bug dans du code existant : stack trace, comportement inattendu, test qui casse, régression. Choisir cet axe quand l'intention est RÉPARER/COMPRENDRE un défaut, quel que soit le langage. Pas ici si on écrit du code neuf (→ axe du langage), si le code est en Swift (→ swift) : pour Swift, le langage prime. ou si on restructure du code sain (→ refactoring).",
       "bench": {
         "score": 100.0,
@@ -126,10 +129,12 @@
     {
       "key": "react",
       "label": "React / front",
-      "model": "pareto-or",
+      "model": "kimi-k3-or",
       "description": "Front-end web : React, JSX/TSX, composants UI, hooks, état client, Next.js, styling. Pas ici si c'est du backend JS/TS (→ code_general) ou du natif Apple (→ swift).",
       "bench": {
-        "score": 98,
+        "score": 98.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -138,7 +143,7 @@
       "key": "swift",
       "label": "Swift",
       "model": "kimi-k3-or",
-      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche.",
+      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
       "bench": {
         "score": 99.0,
         "coverage": 1.0,
@@ -150,7 +155,7 @@
     {
       "key": "refactoring",
       "label": "Refactoring",
-      "model": "mercury-2-or",
+      "model": "minimax3-or",
       "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
       "bench": {
         "score": 100.0,
@@ -163,7 +168,7 @@
     {
       "key": "plan_decompo",
       "label": "Planning — décomposition",
-      "model": "glm-5.3-flash-or",
+      "model": "kimi-2.7-or",
       "description": "Décomposition d'un objectif en sous-tâches/étapes : découper un projet, créer un backlog, séquencer le travail. Pas ici si on rédige une spec détaillée pour un exécutant (→ plan_spec) ou si on évalue les risques/pièges d'un plan (→ plan_judgment).",
       "bench": {
         "score": 100.0,
@@ -176,7 +181,7 @@
     {
       "key": "plan_spec",
       "label": "Planning — handoff / spec",
-      "model": "glm-5.3-flash-or",
+      "model": "inkling-or",
       "description": "Rédaction d'une spécification, d'un handoff, d'un cahier des charges détaillé destiné à un exécutant (humain ou agent) : critères de done, contrat d'interface, doc d'implémentation. Pas ici si on découpe juste en étapes (→ plan_decompo) ou si on juge un plan (→ plan_judgment).",
       "bench": {
         "score": 100.0,
@@ -189,7 +194,7 @@
     {
       "key": "plan_judgment",
       "label": "Planning — jugement / pièges",
-      "model": "glm-5.3-flash-or",
+      "model": "kimi-k3-or",
       "description": "Jugement critique d'un plan ou d'une décision : repérer les pièges, arbitrer entre options, évaluer les risques, faire un red-team. Pas ici si on décompose (→ plan_decompo) ou si on rédige la spec (→ plan_spec).",
       "bench": {
         "score": 100.0,
@@ -219,39 +224,44 @@
       "or": "moonshotai/kimi-k3",
       "kind": "cloud"
     },
-    "muse-spark-1.2-or": {
-      "name": "muse-spark-1.2-OR",
-      "or": "meta/muse-spark-1.2",
+    "qwen3.8-prev-or": {
+      "name": "Qwen3.8-prev OR",
+      "or": "qwen/qwen3.8-max-0902",
       "kind": "cloud"
     },
-    "deepseek-v4-flash-0731-max-or": {
-      "name": "deepseek-v4-flash-0731-max OR",
-      "or": "deepseek/deepseek-v4-flash-0731",
+    "inkling-or": {
+      "name": "inkling OR",
+      "or": "thinkingmachines/inkling",
       "kind": "cloud"
     },
-    "kimi-k2.6-or": {
-      "name": "kimi-k2.6-OR",
-      "or": "moonshotai/kimi-k2.6",
+    "mimo-v2.6-pro-or": {
+      "name": "mimo-v2.6-pro-OR",
+      "or": "xiaomi/mimo-v2.6-pro",
       "kind": "cloud"
     },
-    "glm-5.3-flash-or": {
-      "name": "GLM-5.3-flash-OR",
-      "or": "z-ai/glm-5.3-flash",
+    "kat-coder-pro-v2.5-or": {
+      "name": "kat-coder-pro-v2.5-OR",
+      "or": "kwaipilot/kat-coder-pro-v2.5",
+      "kind": "cloud"
+    },
+    "qwen3.8-max-prime-or": {
+      "name": "qwen3.8-max-prime-OR",
+      "or": "qwen/qwen3.8-max-prime",
+      "kind": "cloud"
+    },
+    "minimax3-or": {
+      "name": "minimax3 OR",
+      "or": "minimax/minimax-m3",
+      "kind": "cloud"
+    },
+    "kimi-2.7-or": {
+      "name": "KIMI 2.7 OR",
+      "or": "moonshotai/kimi-k2.7-code",
       "kind": "cloud"
     },
     "mercury-2-or": {
       "name": "mercury-2-OR",
       "or": "inception/mercury-2",
-      "kind": "cloud"
-    },
-    "deepseek-v4-flash-0731-or": {
-      "name": "deepseek-v4-flash-0731 OR",
-      "or": "deepseek/deepseek-v4-flash-0731",
-      "kind": "cloud"
-    },
-    "pareto-or": {
-      "name": "pareto-OR",
-      "or": "unbiased/pareto",
       "kind": "cloud"
     }
   },
