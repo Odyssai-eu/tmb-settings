@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-09-26",
+  "updated": "2026-09-28",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -33,7 +33,7 @@
     {
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
-      "model": "nemotron3-super-or",
+      "model": "mimo-v2.6-pro-or",
       "description": "Conformité RGPD / protection des données / vie privée en droit européen : analyse de traitements, DPA, mentions légales, registre, bases légales. Pas ici si la question juridique dépasse le RGPD ou couvre plusieurs juridictions (→ legal_complex).",
       "bench": {
         "score": 98,
@@ -70,7 +70,7 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "longcat-2.0-or",
+      "model": "deepseek-v4-flash-or",
       "description": "Calcul numérique, mathématiques, manipulation de données structurées, tableurs, conversions, estimations chiffrées. Pas ici si le raisonnement est qualitatif (→ reasoning) ou si on écrit un script qui calcule (→ python).",
       "bench": {
         "score": 100,
@@ -81,12 +81,10 @@
     {
       "key": "python",
       "label": "Python / scripts",
-      "model": "glm-5.3-flash-or",
+      "model": "mimo-v2.6-pro-or",
       "description": "Tâche dont le livrable est du code Python : scripts, data, automatisation, ML, backend Python. Choisir cet axe dès que le langage cible est Python. Pas ici si c'est un autre langage (→ code_general / swift / react).",
       "bench": {
-        "score": 97.8,
-        "coverage": 1.0,
-        "n_tests": 4,
+        "score": 99.2,
         "source": "TMB"
       },
       "verified": true
@@ -94,10 +92,10 @@
     {
       "key": "code_general",
       "label": "Code général",
-      "model": "glm-5.3-flash-or",
+      "model": "qwen3.8-max-prime-or",
       "description": "Code applicatif dans un langage SANS axe dédié (Go, Rust, Java, C/C++, JS/TS backend, shell…). Seau par défaut : ne PAS choisir si la tâche est en Swift (→ swift), Python (→ python), ou front React (→ react). À n'utiliser QUE si aucun axe de langage spécifique ne s'applique.Pas ici si c'est une commande shell ou un edit mécanique d'une ligne (→ fast_tools",
       "bench": {
-        "score": 97.6,
+        "score": 99.2,
         "source": "TMB"
       },
       "verified": true
@@ -118,7 +116,7 @@
     {
       "key": "react",
       "label": "React / front",
-      "model": "pareto-or",
+      "model": "deepseek-v4-flash-0731-or",
       "description": "Front-end web : React, JSX/TSX, composants UI, hooks, état client, Next.js, styling. Pas ici si c'est du backend JS/TS (→ code_general) ou du natif Apple (→ swift).",
       "bench": {
         "score": 98,
@@ -129,10 +127,10 @@
     {
       "key": "swift",
       "label": "Swift",
-      "model": "qwen3.8-prev-or",
+      "model": "qwen3.8-max-prime-or",
       "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche.",
       "bench": {
-        "score": 96.5,
+        "score": 99,
         "source": "TMB"
       },
       "verified": true
@@ -229,24 +227,19 @@
       "or": "deepseek/deepseek-v4-flash-0731",
       "kind": "cloud"
     },
-    "pareto-or": {
-      "name": "pareto-OR",
-      "or": "unbiased/pareto",
+    "mimo-v2.6-pro-or": {
+      "name": "mimo-v2.6-pro-OR",
+      "or": "xiaomi/mimo-v2.6-pro",
       "kind": "cloud"
     },
-    "nemotron3-super-or": {
-      "name": "nemotron3 super OR",
-      "or": "nvidia/nemotron-3-ultra-550b-a55b",
+    "deepseek-v4-flash-or": {
+      "name": "deepseek v4 flash OR",
+      "or": "deepseek/deepseek-v4-flash",
       "kind": "cloud"
     },
-    "longcat-2.0-or": {
-      "name": "longcat-2.0 OR",
-      "or": "meituan/longcat-2.0",
-      "kind": "cloud"
-    },
-    "qwen3.8-prev-or": {
-      "name": "Qwen3.8-prev OR",
-      "or": "qwen/qwen3.8-max-0902",
+    "qwen3.8-max-prime-or": {
+      "name": "qwen3.8-max-prime-OR",
+      "or": "qwen/qwen3.8-max-prime",
       "kind": "cloud"
     }
   },
