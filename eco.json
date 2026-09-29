@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-09-28",
+  "updated": "2026-09-29",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -103,12 +103,10 @@
     {
       "key": "debug",
       "label": "Debug",
-      "model": "glm-5.3-flash-or",
+      "model": "hy4-xh-or",
       "description": "Diagnostic et correction d'un bug dans du code existant : stack trace, comportement inattendu, test qui casse, régression. Choisir cet axe quand l'intention est RÉPARER/COMPRENDRE un défaut, quel que soit le langage. Pas ici si on écrit du code neuf (→ axe du langage), si le code est en Swift (→ swift) : pour Swift, le langage prime. ou si on restructure du code sain (→ refactoring).",
       "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
+        "score": 100,
         "source": "TMB"
       },
       "verified": true
@@ -240,6 +238,11 @@
     "qwen3.8-max-prime-or": {
       "name": "qwen3.8-max-prime-OR",
       "or": "qwen/qwen3.8-max-prime",
+      "kind": "cloud"
+    },
+    "hy4-xh-or": {
+      "name": "Hy4-xh-or",
+      "or": "tencent/hy4-preview",
       "kind": "cloud"
     }
   },
