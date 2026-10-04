@@ -1,20 +1,23 @@
 {
   "name": "setting",
-  "updated": "2026-09-29",
+  "updated": "2026-10-04",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
     "name": "Mercury-2",
     "or": "inception/mercury-2"
   },
+  "decider_model": null,
   "axes": [
     {
       "key": "creative",
       "label": "Créatif / rédaction longue",
-      "model": "glm-5.3-flash-or",
+      "model": "glm-5.3-or",
       "description": "Rédaction longue en langage naturel : récit, article, marketing, storytelling, réécriture stylistique, contenu créatif. Pas ici si le livrable est du code (→ axes code) ou une spec/handoff structuré (→ plan_spec).",
       "bench": {
-        "score": 96.7,
+        "score": 97.8,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -25,7 +28,9 @@
       "model": "deepseek-v4-flash-0731-or",
       "description": "Rédaction professionnelle structurée destinée à une décision ou une communication : note de synthèse, recommandation, rapport, argumentaire COMEX, document corporate. Pas ici si c'est de la fiction (→ creative) ou une spec technique pour un exécutant (→ plan_spec).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -33,10 +38,12 @@
     {
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
-      "model": "mimo-v2.6-pro-or",
+      "model": "muse-spark-1.2-or",
       "description": "Conformité RGPD / protection des données / vie privée en droit européen : analyse de traitements, DPA, mentions légales, registre, bases légales. Pas ici si la question juridique dépasse le RGPD ou couvre plusieurs juridictions (→ legal_complex).",
       "bench": {
-        "score": 98,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -57,7 +64,7 @@
     {
       "key": "reasoning",
       "label": "Raisonnement / logique",
-      "model": "deepseek-v4-flash-0731-max-or",
+      "model": "deepseek-v4-flash-0731-or",
       "description": "Raisonnement pur, logique, déduction, énigmes, analyse argumentée non-juridique et non-calculatoire. Pas ici si la réponse repose sur du calcul numérique/structuré (→ calc) ou si le livrable est du code (→ axes code).",
       "bench": {
         "score": 100.0,
@@ -70,10 +77,12 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "deepseek-v4-flash-or",
+      "model": "kimi-k3-or",
       "description": "Calcul numérique, mathématiques, manipulation de données structurées, tableurs, conversions, estimations chiffrées. Pas ici si le raisonnement est qualitatif (→ reasoning) ou si on écrit un script qui calcule (→ python).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -81,10 +90,12 @@
     {
       "key": "python",
       "label": "Python / scripts",
-      "model": "mimo-v2.6-pro-or",
+      "model": "deepseek-v4.1-flash-or",
       "description": "Tâche dont le livrable est du code Python : scripts, data, automatisation, ML, backend Python. Choisir cet axe dès que le langage cible est Python. Pas ici si c'est un autre langage (→ code_general / swift / react).",
       "bench": {
-        "score": 99.2,
+        "score": 99.5,
+        "coverage": 0.5,
+        "n_tests": 2,
         "source": "TMB"
       },
       "verified": true
@@ -92,10 +103,12 @@
     {
       "key": "code_general",
       "label": "Code général",
-      "model": "qwen3.8-max-prime-or",
+      "model": "qwen3.8-prev-or",
       "description": "Code applicatif dans un langage SANS axe dédié (Go, Rust, Java, C/C++, JS/TS backend, shell…). Seau par défaut : ne PAS choisir si la tâche est en Swift (→ swift), Python (→ python), ou front React (→ react). À n'utiliser QUE si aucun axe de langage spécifique ne s'applique.Pas ici si c'est une commande shell ou un edit mécanique d'une ligne (→ fast_tools",
       "bench": {
-        "score": 99.2,
+        "score": 97.1,
+        "coverage": 1.0,
+        "n_tests": 10,
         "source": "TMB"
       },
       "verified": true
@@ -103,7 +116,7 @@
     {
       "key": "debug",
       "label": "Debug",
-      "model": "hy4-xh-or",
+      "model": "deepseek-v4-pro-or",
       "description": "Diagnostic et correction d'un bug dans du code existant : stack trace, comportement inattendu, test qui casse, régression. Choisir cet axe quand l'intention est RÉPARER/COMPRENDRE un défaut, quel que soit le langage. Pas ici si on écrit du code neuf (→ axe du langage), si le code est en Swift (→ swift) : pour Swift, le langage prime. ou si on restructure du code sain (→ refactoring).",
       "bench": {
         "score": 100,
@@ -114,7 +127,7 @@
     {
       "key": "react",
       "label": "React / front",
-      "model": "deepseek-v4-flash-0731-or",
+      "model": "mimo-v2.6-flash-or",
       "description": "Front-end web : React, JSX/TSX, composants UI, hooks, état client, Next.js, styling. Pas ici si c'est du backend JS/TS (→ code_general) ou du natif Apple (→ swift).",
       "bench": {
         "score": 98,
@@ -125,10 +138,10 @@
     {
       "key": "swift",
       "label": "Swift",
-      "model": "qwen3.8-max-prime-or",
-      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche.",
+      "model": "deepseek-v4-flash-0731-or",
+      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
       "bench": {
-        "score": 99,
+        "score": 94,
         "source": "TMB"
       },
       "verified": true
@@ -136,7 +149,7 @@
     {
       "key": "refactoring",
       "label": "Refactoring",
-      "model": "mercury-2-or",
+      "model": "minimax3-or",
       "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
       "bench": {
         "score": 100.0,
@@ -149,12 +162,10 @@
     {
       "key": "plan_decompo",
       "label": "Planning — décomposition",
-      "model": "glm-5.3-flash-or",
+      "model": "deepseek-v4.1-flash-or",
       "description": "Décomposition d'un objectif en sous-tâches/étapes : découper un projet, créer un backlog, séquencer le travail. Pas ici si on rédige une spec détaillée pour un exécutant (→ plan_spec) ou si on évalue les risques/pièges d'un plan (→ plan_judgment).",
       "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
+        "score": 98,
         "source": "TMB"
       },
       "verified": true
@@ -162,7 +173,7 @@
     {
       "key": "plan_spec",
       "label": "Planning — handoff / spec",
-      "model": "glm-5.3-flash-or",
+      "model": "deepseek-v4-flash-0731-or",
       "description": "Rédaction d'une spécification, d'un handoff, d'un cahier des charges détaillé destiné à un exécutant (humain ou agent) : critères de done, contrat d'interface, doc d'implémentation. Pas ici si on découpe juste en étapes (→ plan_decompo) ou si on juge un plan (→ plan_judgment).",
       "bench": {
         "score": 100.0,
@@ -175,12 +186,10 @@
     {
       "key": "plan_judgment",
       "label": "Planning — jugement / pièges",
-      "model": "glm-5.3-flash-or",
+      "model": "deepseek-v4.1-flash-or",
       "description": "Jugement critique d'un plan ou d'une décision : repérer les pièges, arbitrer entre options, évaluer les risques, faire un red-team. Pas ici si on décompose (→ plan_decompo) ou si on rédige la spec (→ plan_spec).",
       "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 2,
+        "score": 100,
         "source": "TMB"
       },
       "verified": true
@@ -188,7 +197,7 @@
     {
       "key": "fast_tools",
       "label": "Tools & fast coding",
-      "model": "mercury-2-or",
+      "model": "mercury-2.5-or",
       "description": "Appels d'outils rapides, complétions courtes à faible latence, edits triviaux, tool-calling en boucle d'agent où la VITESSE prime sur la profondeur. Choisir cet axe quand la tâche est petite/mécanique et doit être servie vite, pas quand elle demande une vraie réflexion (→ axe de compétence correspondant).",
       "bench": {
         "score": 100.0,
@@ -200,24 +209,9 @@
     }
   ],
   "models": {
-    "muse-spark-1.2-or": {
-      "name": "muse-spark-1.2-OR",
-      "or": "meta/muse-spark-1.2",
-      "kind": "cloud"
-    },
-    "deepseek-v4-flash-0731-max-or": {
-      "name": "deepseek-v4-flash-0731-max OR",
-      "or": "deepseek/deepseek-v4-flash-0731",
-      "kind": "cloud"
-    },
-    "glm-5.3-flash-or": {
-      "name": "GLM-5.3-flash-OR",
-      "or": "z-ai/glm-5.3-flash",
-      "kind": "cloud"
-    },
-    "mercury-2-or": {
-      "name": "mercury-2-OR",
-      "or": "inception/mercury-2",
+    "glm-5.3-or": {
+      "name": "glm-5.3-OR",
+      "or": "z-ai/glm-5.3",
       "kind": "cloud"
     },
     "deepseek-v4-flash-0731-or": {
@@ -225,24 +219,44 @@
       "or": "deepseek/deepseek-v4-flash-0731",
       "kind": "cloud"
     },
-    "mimo-v2.6-pro-or": {
-      "name": "mimo-v2.6-pro-OR",
-      "or": "xiaomi/mimo-v2.6-pro",
+    "muse-spark-1.2-or": {
+      "name": "muse-spark-1.2-OR",
+      "or": "meta/muse-spark-1.2",
       "kind": "cloud"
     },
-    "deepseek-v4-flash-or": {
-      "name": "deepseek v4 flash OR",
-      "or": "deepseek/deepseek-v4-flash",
+    "kimi-k3-or": {
+      "name": "Kimi-K3-OR",
+      "or": "moonshotai/kimi-k3",
       "kind": "cloud"
     },
-    "qwen3.8-max-prime-or": {
-      "name": "qwen3.8-max-prime-OR",
-      "or": "qwen/qwen3.8-max-prime",
+    "deepseek-v4.1-flash-or": {
+      "name": "deepseek-v4.1-flash - OR",
+      "or": "deepseek/deepseek-v4.1-flash",
       "kind": "cloud"
     },
-    "hy4-xh-or": {
-      "name": "Hy4-xh-or",
-      "or": "tencent/hy4-preview",
+    "qwen3.8-prev-or": {
+      "name": "Qwen3.8-prev OR",
+      "or": "qwen/qwen3.8-max-0902",
+      "kind": "cloud"
+    },
+    "minimax3-or": {
+      "name": "minimax3 OR",
+      "or": "minimax/minimax-m3",
+      "kind": "cloud"
+    },
+    "mercury-2.5-or": {
+      "name": "mercury-2.5-OR",
+      "or": "inception/mercury-2.5",
+      "kind": "cloud"
+    },
+    "deepseek-v4-pro-or": {
+      "name": "deepseek v4 pro OR",
+      "or": "deepseek/deepseek-v4-pro",
+      "kind": "cloud"
+    },
+    "mimo-v2.6-flash-or": {
+      "name": "mimo-v2.6-flash-OR",
+      "or": "xiaomi/mimo-v2.6-flash",
       "kind": "cloud"
     }
   },
