@@ -156,15 +156,9 @@
     {
       "key": "plan_decompo",
       "label": "Planning — décomposition",
-      "model": "mercury-2-or",
+      "model": "inception-mercury-2.5",
       "description": "Décomposition d'un objectif en sous-tâches/étapes : découper un projet, créer un backlog, séquencer le travail. Pas ici si on rédige une spec détaillée pour un exécutant (→ plan_spec) ou si on évalue les risques/pièges d'un plan (→ plan_judgment).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "plan_spec",
@@ -240,11 +234,6 @@
       "or": "minimax/minimax-m3",
       "kind": "cloud"
     },
-    "mercury-2-or": {
-      "name": "mercury-2-OR",
-      "or": "inception/mercury-2",
-      "kind": "cloud"
-    },
     "mercury-2.5-or": {
       "name": "mercury-2.5-OR",
       "or": "inception/mercury-2.5",
@@ -258,6 +247,11 @@
     "glm-5.3-prime-or": {
       "name": "glm-5.3-prime-OR",
       "or": "z-ai/glm-5.3-prime",
+      "kind": "cloud"
+    },
+    "inception-mercury-2.5": {
+      "name": "inception/mercury-2.5",
+      "or": "inception/mercury-2.5",
       "kind": "cloud"
     }
   },
