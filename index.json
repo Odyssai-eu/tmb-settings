@@ -2,7 +2,8 @@
   "settings": [
     "eco",
     "full",
-    "aa"
+    "aa",
+    "aa-eco"
   ],
   "default": "eco"
 }
