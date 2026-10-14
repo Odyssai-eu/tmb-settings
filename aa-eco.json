@@ -1,7 +1,7 @@
 {
   "name": "setting",
   "regime": "cloud",
-  "updated": "2026-10-05",
+  "updated": "2026-10-14",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "enabled": true,
@@ -25,6 +25,11 @@
       "name": "Trinity Large Thinking",
       "kind": "cloud",
       "or": "arcee-ai/trinity-large-thinking"
+    },
+    "xiaomi/mimo-v2.6-flash": {
+      "name": "xiaomi/mimo-v2.6-flash",
+      "endpoint": "xiaomi/mimo-v2.6-flash",
+      "provider": "openrouter"
     }
   },
   "axes": [
@@ -65,8 +70,7 @@
         "aa_rank": 2,
         "aa_raw": 44.8
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "legal_complex",
@@ -79,8 +83,7 @@
         "aa_rank": 2,
         "aa_raw": 44.8
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "reasoning",
@@ -106,8 +109,7 @@
         "aa_rank": 2,
         "aa_raw": 46.9
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "python",
@@ -120,8 +122,7 @@
         "aa_rank": 3,
         "aa_raw": 73.1
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "code_general",
@@ -134,8 +135,7 @@
         "aa_rank": 3,
         "aa_raw": 73.1
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "debug",
@@ -148,8 +148,7 @@
         "aa_rank": 3,
         "aa_raw": 73.1
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "react",
@@ -162,8 +161,7 @@
         "aa_rank": 3,
         "aa_raw": 73.1
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "swift",
@@ -176,8 +174,7 @@
         "aa_rank": 3,
         "aa_raw": 73.1
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "refactoring",
@@ -190,8 +187,7 @@
         "aa_rank": 3,
         "aa_raw": 73.1
       },
-      "verified": false,
-      "_aa_choice": true
+      "verified": false
     },
     {
       "key": "plan_decompo",
@@ -270,11 +266,64 @@
         "aa_raw": 53.6
       },
       "verified": false
+    },
+    {
+      "key": "voice",
+      "label": "Voix (oral)",
+      "model": "xiaomi/mimo-v2.6-flash",
+      "description": "Tours du mode vocal : réponse orale courte, deux à quatre phrases, sans markdown ni liste. Modèle rapide sans raisonnement.",
+      "decider": false,
+      "thinking": false,
+      "instruction": "Réponse destinée à être lue à voix haute : deux à quatre phrases courtes, sans markdown, sans liste, sans titre.",
+      "suggested": "qwen/qwen3-next-80b-a3b-instruct"
     }
   ],
   "decider": {
     "name": "inception/mercury-2",
     "or": "inception/mercury-2"
   },
-  "format": "coeos-settings/1"
+  "format": "coeos-settings/1",
+  "live": {
+    "model": "gemini-3.8-live",
+    "voice": "",
+    "voices": [
+      "Zephyr",
+      "Puck",
+      "Charon",
+      "Kore",
+      "Fenrir",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Autonoe",
+      "Enceladus",
+      "Iapetus",
+      "Umbriel",
+      "Algieba",
+      "Despina",
+      "Erinome",
+      "Algenib",
+      "Rasalgethi",
+      "Laomedeia",
+      "Achernar",
+      "Alnilam",
+      "Schedar",
+      "Gacrux",
+      "Pulcherrima",
+      "Achird",
+      "Zubenelgenubi",
+      "Vindemiatrix",
+      "Sadachbia",
+      "Sadaltager",
+      "Sulafat"
+    ],
+    "instruction": "Tu es Jarvis, l'interface vocale de CoeOS. Tu n'es qu'un messager : pour TOUTE demande de l'utilisateur, appelle immédiatement l'outil ask_coeos avec sa demande telle quelle. Pendant l'attente, tu peux dire une très courte phrase d'attente. Quand le résultat arrive, lis-le MOT POUR MOT, sans le résumer, le reformuler ni le commenter. Ne réponds jamais toi-même sur le fond.",
+    "token_ttl_s": 1800,
+    "session_ttl_s": 60
+  },
+  "asr": {
+    "model": "voxtral-mini-latest",
+    "language": "fr"
+  }
 }
