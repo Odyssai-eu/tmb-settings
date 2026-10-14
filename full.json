@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-09-28",
+  "updated": "2026-10-14",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -38,12 +38,10 @@
     {
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
-      "model": "inkling-or",
+      "model": "kimi-k3-or",
       "description": "Conformité RGPD / protection des données / vie privée en droit européen : analyse de traitements, DPA, mentions légales, registre, bases légales. Pas ici si la question juridique dépasse le RGPD ou couvre plusieurs juridictions (→ legal_complex).",
       "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
+        "score": 100,
         "source": "TMB"
       },
       "verified": true
@@ -77,7 +75,7 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "kat-coder-pro-v2.5-or",
+      "model": "hy4-xh-or",
       "description": "Calcul numérique, mathématiques, manipulation de données structurées, tableurs, conversions, estimations chiffrées. Pas ici si le raisonnement est qualitatif (→ reasoning) ou si on écrit un script qui calcule (→ python).",
       "bench": {
         "score": 100.0,
@@ -116,7 +114,7 @@
     {
       "key": "debug",
       "label": "Debug",
-      "model": "qwen3.8-prev-or",
+      "model": "hy4-xh-or",
       "description": "Diagnostic et correction d'un bug dans du code existant : stack trace, comportement inattendu, test qui casse, régression. Choisir cet axe quand l'intention est RÉPARER/COMPRENDRE un défaut, quel que soit le langage. Pas ici si on écrit du code neuf (→ axe du langage), si le code est en Swift (→ swift) : pour Swift, le langage prime. ou si on restructure du code sain (→ refactoring).",
       "bench": {
         "score": 100.0,
@@ -181,12 +179,10 @@
     {
       "key": "plan_spec",
       "label": "Planning — handoff / spec",
-      "model": "inkling-or",
+      "model": "muse-spark-1.2-or",
       "description": "Rédaction d'une spécification, d'un handoff, d'un cahier des charges détaillé destiné à un exécutant (humain ou agent) : critères de done, contrat d'interface, doc d'implémentation. Pas ici si on découpe juste en étapes (→ plan_decompo) ou si on juge un plan (→ plan_judgment).",
       "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
+        "score": 100,
         "source": "TMB"
       },
       "verified": true
@@ -216,6 +212,16 @@
         "source": "TMB"
       },
       "verified": false
+    },
+    {
+      "key": "voice",
+      "label": "Voix (oral)",
+      "model": "xiaomi/mimo-v2.6-flash",
+      "description": "Tours du mode vocal : réponse orale courte, deux à quatre phrases, sans markdown ni liste. Modèle rapide sans raisonnement.",
+      "decider": false,
+      "thinking": false,
+      "instruction": "Réponse destinée à être lue à voix haute : deux à quatre phrases courtes, sans markdown, sans liste, sans titre.",
+      "suggested": "qwen/qwen3-next-80b-a3b-instruct"
     }
   ],
   "models": {
@@ -229,19 +235,14 @@
       "or": "qwen/qwen3.8-max-0902",
       "kind": "cloud"
     },
-    "inkling-or": {
-      "name": "inkling OR",
-      "or": "thinkingmachines/inkling",
-      "kind": "cloud"
-    },
     "mimo-v2.6-pro-or": {
       "name": "mimo-v2.6-pro-OR",
       "or": "xiaomi/mimo-v2.6-pro",
       "kind": "cloud"
     },
-    "kat-coder-pro-v2.5-or": {
-      "name": "kat-coder-pro-v2.5-OR",
-      "or": "kwaipilot/kat-coder-pro-v2.5",
+    "hy4-xh-or": {
+      "name": "Hy4-xh-or",
+      "or": "tencent/hy4-preview",
       "kind": "cloud"
     },
     "qwen3.8-max-prime-or": {
@@ -263,8 +264,61 @@
       "name": "mercury-2-OR",
       "or": "inception/mercury-2",
       "kind": "cloud"
+    },
+    "muse-spark-1.2-or": {
+      "name": "muse-spark-1.2-OR",
+      "or": "meta/muse-spark-1.2",
+      "kind": "cloud"
+    },
+    "xiaomi/mimo-v2.6-flash": {
+      "name": "xiaomi/mimo-v2.6-flash",
+      "endpoint": "xiaomi/mimo-v2.6-flash",
+      "provider": "openrouter"
     }
   },
   "format": "coeos-settings/1",
-  "enabled": true
+  "enabled": true,
+  "live": {
+    "model": "gemini-3.8-live",
+    "voice": "",
+    "voices": [
+      "Zephyr",
+      "Puck",
+      "Charon",
+      "Kore",
+      "Fenrir",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Autonoe",
+      "Enceladus",
+      "Iapetus",
+      "Umbriel",
+      "Algieba",
+      "Despina",
+      "Erinome",
+      "Algenib",
+      "Rasalgethi",
+      "Laomedeia",
+      "Achernar",
+      "Alnilam",
+      "Schedar",
+      "Gacrux",
+      "Pulcherrima",
+      "Achird",
+      "Zubenelgenubi",
+      "Vindemiatrix",
+      "Sadachbia",
+      "Sadaltager",
+      "Sulafat"
+    ],
+    "instruction": "Tu es Jarvis, l'interface vocale de CoeOS. Tu n'es qu'un messager : pour TOUTE demande de l'utilisateur, appelle immédiatement l'outil ask_coeos avec sa demande telle quelle. Pendant l'attente, tu peux dire une très courte phrase d'attente. Quand le résultat arrive, lis-le MOT POUR MOT, sans le résumer, le reformuler ni le commenter. Ne réponds jamais toi-même sur le fond.",
+    "token_ttl_s": 1800,
+    "session_ttl_s": 60
+  },
+  "asr": {
+    "model": "voxtral-mini-latest",
+    "language": "fr"
+  }
 }
