@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -154,7 +154,7 @@
     {
       "key": "plan_decompo",
       "label": "Planning — décomposition",
-      "model": "inception-mercury-2.5",
+      "model": "mimo-v2.6-flash-or",
       "description": "Décomposition d'un objectif en sous-tâches/étapes : découper un projet, créer un backlog, séquencer le travail. Pas ici si on rédige une spec détaillée pour un exécutant (→ plan_spec) ou si on évalue les risques/pièges d'un plan (→ plan_judgment).",
       "verified": false
     },
@@ -185,14 +185,8 @@
     {
       "key": "fast_tools",
       "label": "Tools & fast coding",
-      "model": "mercury-2.5-or",
+      "model": "kimi-k2-0905-or",
       "description": "Appels d'outils rapides, complétions courtes à faible latence, edits triviaux, tool-calling en boucle d'agent où la VITESSE prime sur la profondeur. Choisir cet axe quand la tâche est petite/mécanique et doit être servie vite, pas quand elle demande une vraie réflexion (→ axe de compétence correspondant).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
       "verified": false
     },
     {
@@ -204,6 +198,13 @@
       "thinking": false,
       "instruction": "Réponse destinée à être lue à voix haute : deux à quatre phrases courtes, sans markdown, sans liste, sans titre.",
       "suggested": "qwen/qwen3-next-80b-a3b-instruct"
+    },
+    {
+      "key": "agent_exec",
+      "label": "Agent — exécution outillée",
+      "model": "glm-5.3-flash-or",
+      "description": "Tours agent de l app (x-coeos-axis: agent_exec) : boucle d outils, web, sous-agents. Servi par en-tête seulement, jamais choisi par le décideur.",
+      "decider": false
     }
   ],
   "models": {
@@ -228,18 +229,13 @@
       "kind": "cloud"
     },
     "mimo-v2.6-flash-or": {
-      "name": "mimo-v2.6-flash-OR",
+      "name": "mimo-v2.6-flash-or",
       "or": "xiaomi/mimo-v2.6-flash",
       "kind": "cloud"
     },
     "minimax3-or": {
       "name": "minimax3 OR",
       "or": "minimax/minimax-m3",
-      "kind": "cloud"
-    },
-    "mercury-2.5-or": {
-      "name": "mercury-2.5-OR",
-      "or": "inception/mercury-2.5",
       "kind": "cloud"
     },
     "mimo-v2.6-pro-or": {
@@ -252,11 +248,6 @@
       "or": "z-ai/glm-5.3-prime",
       "kind": "cloud"
     },
-    "inception-mercury-2.5": {
-      "name": "inception/mercury-2.5",
-      "or": "inception/mercury-2.5",
-      "kind": "cloud"
-    },
     "deepseek-v4-flash-0731-max-or": {
       "name": "deepseek-v4-flash-0731-max OR",
       "or": "deepseek/deepseek-v4-flash-0731",
@@ -266,6 +257,16 @@
       "name": "xiaomi/mimo-v2.6-flash",
       "endpoint": "xiaomi/mimo-v2.6-flash",
       "provider": "openrouter"
+    },
+    "kimi-k2-0905-or": {
+      "name": "kimi-k2-0905-or",
+      "or": "moonshotai/kimi-k2-0905",
+      "kind": "cloud"
+    },
+    "glm-5.3-flash-or": {
+      "name": "GLM-5.3-flash-OR",
+      "or": "z-ai/glm-5.3-flash",
+      "kind": "cloud"
     }
   },
   "format": "coeos-settings/1",
