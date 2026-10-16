@@ -2,12 +2,13 @@
   "name": "eu",
   "updated": "2026-10-16",
   "note": "Variante UE + ZDR du setting eco : chaque modèle servi par EUrouter (EUrouter B.V., Amsterdam ; DPA, hébergeurs hors UE exclus côté compte). Correspondances Sophie 2026-10-16 : muse → qwen3.8-flash-next, mimo-flash → deepseek-v4.1-flash, mimo-pro → glm-5.3, qwen3.8-max → qwen3.8-2.4t, kimi-k2-0905 → kimi-k2.6, glm-5.3-prime → glm-5.3.",
-  "default_axis": "code_general",
+  "default_axis": "legal_complex",
   "decider": {
-    "name": "inception/mercury-2",
-    "or": "inception/mercury-2"
+    "name": "SubQ snap (ZDR)",
+    "provider": "subq",
+    "endpoint": "subq-snap-preview",
+    "kind": "systemone"
   },
-  "decider_model": null,
   "axes": [
     {
       "key": "creative",
