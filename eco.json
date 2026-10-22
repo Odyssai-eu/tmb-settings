@@ -185,7 +185,7 @@
     {
       "key": "fast_tools",
       "label": "Tools & fast coding",
-      "model": "kimi-k2-0905-or",
+      "model": "mercury-3-or",
       "description": "Appels d'outils rapides, complétions courtes à faible latence, edits triviaux, tool-calling en boucle d'agent où la VITESSE prime sur la profondeur. Choisir cet axe quand la tâche est petite/mécanique et doit être servie vite, pas quand elle demande une vraie réflexion (→ axe de compétence correspondant).",
       "verified": false
     },
@@ -257,11 +257,6 @@
       "name": "xiaomi/mimo-v2.6-flash",
       "endpoint": "xiaomi/mimo-v2.6-flash",
       "provider": "openrouter"
-    },
-    "kimi-k2-0905-or": {
-      "name": "kimi-k2-0905-or",
-      "or": "moonshotai/kimi-k2-0905",
-      "kind": "cloud"
     },
     "mercury-3-or": {
       "name": "mercury-3-or",
