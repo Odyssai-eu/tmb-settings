@@ -1,19 +1,22 @@
 {
   "name": "setting",
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
-    "name": "inception/mercury-2",
-    "or": "inception/mercury-2"
+    "name": "SubQ snap",
+    "provider": "subq",
+    "endpoint": "subq-snap-preview",
+    "kind": "systemone",
+    "criteria": "label+full",
+    "threshold": 0.5
   },
-  "decider_model": null,
   "axes": [
     {
       "key": "creative",
       "label": "Créatif / rédaction longue",
       "model": "glm-5.3-or",
-      "description": "Rédaction longue en langage naturel : récit, article, marketing, storytelling, réécriture stylistique, contenu créatif. Pas ici si le livrable est du code (→ axes code) ou une spec/handoff structuré (→ plan_spec).",
+      "description": "Écriture d'invention : fiction, nouvelle, conte, poème, chanson, scénario, dialogue de personnages, jeu de rôle, pastiche, texte personnel (lettre intime, discours de mariage), réécriture stylistique d'un texte littéraire, et création publicitaire (slogans, accroches, concept et textes d'une campagne de publicité). Le critère : on invente une forme ou une idée. Pas ici si le texte informe ou rend compte pour une organisation (article, lettre d'information, page de présentation, communication interne, courrier, rapport), même sur un ton narratif (→ redac_pro) ; pas ici si le livrable est du code (→ axes code) ou une spécification (→ plan_spec).",
       "bench": {
         "score": 97.8,
         "coverage": 1.0,
@@ -26,7 +29,7 @@
       "key": "redac_pro",
       "label": "Rédaction pro / business",
       "model": "mimo-v2.6-flash-or",
-      "description": "Rédaction professionnelle structurée destinée à une décision ou une communication : note de synthèse, recommandation, rapport, argumentaire COMEX, document corporate. Pas ici si c'est de la fiction (→ creative) ou une spec technique pour un exécutant (→ plan_spec).",
+      "description": "Texte qui informe, explique ou rend compte pour une entreprise, une organisation ou un usage professionnel, quel que soit le ton : note de synthèse, rapport, recommandation, argumentaire, courriel ou courrier professionnel, compte rendu, communiqué, publication éditoriale d'une organisation (article, lettre d'information, page de présentation, histoire de l'entreprise racontée), fiche produit, présentation, document corporate, mise en forme publiable d'un document de travail. Aussi l'axe par défaut d'une demande d'écriture générale non technique. Pas ici si l'on invente une fiction, un texte personnel ou une création publicitaire (slogans, accroches, campagne) (→ creative), une spécification pour un exécutant (→ plan_spec), ou une analyse juridique (→ legal_rgpd / legal_complex).",
       "bench": {
         "score": 100,
         "source": "TMB"
@@ -37,7 +40,7 @@
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
       "model": "muse-spark-1.2-or",
-      "description": "Conformité RGPD / protection des données / vie privée en droit européen : analyse de traitements, DPA, mentions légales, registre, bases légales. Pas ici si la question juridique dépasse le RGPD ou couvre plusieurs juridictions (→ legal_complex).",
+      "description": "Protection des données personnelles et vie privée (RGPD, ePrivacy, loi belge vie privée) : registre des traitements, base légale, analyse d'impact (AIPD/DPIA), contrat de sous-traitance (DPA, art. 28), mentions d'information, politique de confidentialité, cookies et consentement, droits des personnes, transferts hors UE, violation de données. Pas ici si la question juridique dépasse les données personnelles ou compare plusieurs droits (→ legal_complex).",
       "bench": {
         "score": 100,
         "source": "TMB"
@@ -48,7 +51,7 @@
       "key": "legal_complex",
       "label": "Conformité multi-jur.",
       "model": "muse-spark-1.2-or",
-      "description": "Analyse juridique complexe ou multi-juridictionnelle : contrats, conformité hors-RGPD, comparaison de droits, raisonnement légal nuancé. Pas ici si c'est strictement RGPD/données personnelles (→ legal_rgpd).",
+      "description": "Droit hors données personnelles, ou plusieurs juridictions : rédaction et revue de contrats (clauses, responsabilité, non-concurrence), droit des sociétés, du travail, commercial, fiscal, pénal, procédure, conformité sectorielle, comparaison de droits nationaux (Belgique, France, Luxembourg…), raisonnement juridique nuancé, jurisprudence. Pas ici si c'est strictement données personnelles / RGPD (→ legal_rgpd), ni si l'objet est un échange technique entre logiciels (formats, flux, interfaces) (→ plan_spec).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -61,7 +64,7 @@
       "key": "reasoning",
       "label": "Raisonnement / logique",
       "model": "qwen3.8-prev-or",
-      "description": "Raisonnement pur, logique, déduction, énigmes, analyse argumentée non-juridique et non-calculatoire. Pas ici si la réponse repose sur du calcul numérique/structuré (→ calc) ou si le livrable est du code (→ axes code).",
+      "description": "Raisonnement qualitatif ou logique sans calcul : déduction, logique formelle, démonstration, réfutation, énigme, paradoxe, argumentation, analyse critique d'une affirmation, explication conceptuelle, comparaison d'idées. Une démonstration ou un contre-exemple mathématique reste ici tant qu'il ne s'agit pas d'effectuer un calcul chiffré. Pas ici si la réponse exige de calculer des nombres ou de traiter des données (→ calc), si le livrable est du code (→ axes code), ou si c'est une question juridique (→ legal_*).",
       "bench": {
         "score": 100,
         "source": "TMB"
@@ -72,7 +75,7 @@
       "key": "calc",
       "label": "Calcul / structuré",
       "model": "mimo-v2.6-flash-or",
-      "description": "Calcul numérique, mathématiques, manipulation de données structurées, tableurs, conversions, estimations chiffrées. Pas ici si le raisonnement est qualitatif (→ reasoning) ou si on écrit un script qui calcule (→ python).",
+      "description": "Effectuer un calcul ou traiter des données chiffrées : arithmétique, pourcentages, intérêts, statistiques, conversions d'unités, estimations chiffrées, budget, tableur et formules, manipulation de tableaux ou de données structurées (CSV, JSON) sans écrire de programme. Pas ici si le raisonnement est logique ou qualitatif sans chiffres à calculer (→ reasoning), ni si l'on demande un script qui calcule (→ python ou axe du langage).",
       "bench": {
         "score": 100,
         "source": "TMB"
@@ -83,7 +86,7 @@
       "key": "python",
       "label": "Python / scripts",
       "model": "deepseek-v4-flash-0731-max-or",
-      "description": "Tâche dont le livrable est du code Python : scripts, data, automatisation, ML, backend Python. Choisir cet axe dès que le langage cible est Python. Pas ici si c'est un autre langage (→ code_general / swift / react).",
+      "description": "Le livrable est du code Python, neuf : script, automatisation, traitement de données (pandas), notebook, API ou backend Python, apprentissage automatique. Choisir cet axe dès que le langage cible est Python et que la tâche demande une vraie écriture de code. Pas ici pour une retouche mécanique d'une ligne (→ fast_tools), pour réparer un bug (→ debug), pour restructurer du code existant sans changer son comportement (→ refactoring), ni pour un autre langage (→ code_general / swift / react).",
       "bench": {
         "score": 96.8,
         "source": "TMB"
@@ -94,7 +97,7 @@
       "key": "code_general",
       "label": "Code général",
       "model": "qwen3.8-prev-or",
-      "description": "Code applicatif dans un langage SANS axe dédié (Go, Rust, Java, C/C++, JS/TS backend, shell…). Seau par défaut : ne PAS choisir si la tâche est en Swift (→ swift), Python (→ python), ou front React (→ react). À n'utiliser QUE si aucun axe de langage spécifique ne s'applique.Pas ici si c'est une commande shell ou un edit mécanique d'une ligne (→ fast_tools",
+      "description": "Écrire du code neuf dans un langage sans axe dédié : Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, JavaScript ou TypeScript côté serveur, SQL, shell scripts de plusieurs lignes, configuration d'infrastructure (Docker, CI). À choisir seulement si aucun axe plus précis ne s'applique. Pas ici si le langage est Swift (→ swift), Python (→ python) ou du front React (→ react) ; pas ici pour réparer (→ debug), restructurer (→ refactoring) ou faire une retouche d'une ligne (→ fast_tools).",
       "bench": {
         "score": 97.1,
         "coverage": 1.0,
@@ -107,7 +110,7 @@
       "key": "debug",
       "label": "Debug",
       "model": "mimo-v2.6-pro-or",
-      "description": "Diagnostic et correction d'un bug dans du code existant : stack trace, comportement inattendu, test qui casse, régression. Choisir cet axe quand l'intention est RÉPARER/COMPRENDRE un défaut, quel que soit le langage. Pas ici si on écrit du code neuf (→ axe du langage), si le code est en Swift (→ swift) : pour Swift, le langage prime. ou si on restructure du code sain (→ refactoring).",
+      "description": "Comprendre et corriger un défaut dans du code existant, quel que soit le langage (sauf Swift) : message d'erreur, trace de pile, exception, comportement inattendu, test qui échoue, régression, fuite mémoire, performance anormale. L'intention est RÉPARER ou EXPLIQUER une panne. Pas ici si le code est en Swift (→ swift, le langage prime), si l'on écrit du code neuf (→ axe du langage), ou si le code fonctionne et qu'on veut le restructurer (→ refactoring).",
       "bench": {
         "score": 100,
         "source": "TMB"
@@ -118,7 +121,7 @@
       "key": "react",
       "label": "React / front",
       "model": "mimo-v2.6-flash-or",
-      "description": "Front-end web : React, JSX/TSX, composants UI, hooks, état client, Next.js, styling. Pas ici si c'est du backend JS/TS (→ code_general) ou du natif Apple (→ swift).",
+      "description": "Front-end web : React, JSX/TSX, composants d'interface, hooks, état client, formulaires, routage côté client, Next.js, Tailwind/CSS, accessibilité d'une page, intégration d'une maquette. Pas ici si c'est du JavaScript/TypeScript côté serveur (→ code_general), une application native Apple (→ swift), ou un bug à réparer dans un composant existant (→ debug).",
       "bench": {
         "score": 98.0,
         "coverage": 1.0,
@@ -131,7 +134,7 @@
       "key": "swift",
       "label": "Swift",
       "model": "glm-5.3-prime-or",
-      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
+      "description": "Tout ce qui concerne le code Swift et l'écosystème Apple : SwiftUI, UIKit, AppKit, application iOS/macOS/watchOS, Swift Package, Xcode, concurrence Swift (async/await, actors), Core Data, SwiftData, CLI Swift. Le langage prime : choisir cet axe même pour déboguer, restructurer ou retoucher du code Swift.",
       "bench": {
         "score": 95,
         "source": "TMB"
@@ -142,7 +145,7 @@
       "key": "refactoring",
       "label": "Refactoring",
       "model": "minimax3-or",
-      "description": "Tâche dont le livrable est du code Swift : SwiftUI, AppKit/UIKit, app macOS/iOS native, Swift Package, Xcode, async/await Swift, ArgumentParser, CLI Swift. Choisir CET axe dès que le langage cible est Swift, MÊME si la tâche ressemble par ailleurs à du code général ou à un CLI. Le langage prime sur la forme de la tâche,y compris le débogage.",
+      "description": "Restructurer du code qui fonctionne SANS changer son comportement : extraire des fonctions ou des modules, découper un fichier, supprimer la duplication, renommer à l'échelle d'un module, moderniser une base de code vers une version plus récente du langage ou de ses outils, migrer vers une nouvelle API, réorganiser une arborescence ou une configuration éclatée, améliorer la lisibilité. Pas ici si l'on corrige un bug (→ debug), si l'on ajoute une fonctionnalité (→ axe du langage), si c'est du Swift (→ swift) ou une retouche d'une seule ligne (→ fast_tools).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -155,14 +158,14 @@
       "key": "plan_decompo",
       "label": "Planning — décomposition",
       "model": "mimo-v2.6-flash-or",
-      "description": "Décomposition d'un objectif en sous-tâches/étapes : découper un projet, créer un backlog, séquencer le travail. Pas ici si on rédige une spec détaillée pour un exécutant (→ plan_spec) ou si on évalue les risques/pièges d'un plan (→ plan_judgment).",
+      "description": "Découper un objectif en étapes : plan de projet, liste de tâches, backlog, jalons, séquencement, répartition du travail, feuille de route. Le livrable est une liste ordonnée d'étapes. Pas ici si l'on rédige la spécification détaillée d'une étape pour un exécutant (→ plan_spec) ou si l'on juge les risques d'un plan (→ plan_judgment).",
       "verified": false
     },
     {
       "key": "plan_spec",
       "label": "Planning — handoff / spec",
       "model": "deepseek-v4-flash-0731-or",
-      "description": "Rédaction d'une spécification, d'un handoff, d'un cahier des charges détaillé destiné à un exécutant (humain ou agent) : critères de done, contrat d'interface, doc d'implémentation. Pas ici si on découpe juste en étapes (→ plan_decompo) ou si on juge un plan (→ plan_judgment).",
+      "description": "Rédiger une spécification destinée à un exécutant (humain ou agent) : cahier des charges, critères d'acceptation, handoff, document d'implémentation, contrat d'interface ou d'API, formats et flux d'échange de données entre logiciels ou systèmes, schéma de données. Pas ici si l'on découpe seulement en étapes (→ plan_decompo), si l'on juge un plan (→ plan_judgment), ou s'il s'agit d'un contrat juridique entre parties (→ legal_complex).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -175,7 +178,7 @@
       "key": "plan_judgment",
       "label": "Planning — jugement / pièges",
       "model": "qwen3.8-prev-or",
-      "description": "Jugement critique d'un plan ou d'une décision : repérer les pièges, arbitrer entre options, évaluer les risques, faire un red-team. Pas ici si on décompose (→ plan_decompo) ou si on rédige la spec (→ plan_spec).",
+      "description": "Évaluer de façon critique un plan, une décision ou une architecture : repérer les pièges et angles morts, arbitrer entre options, analyser les risques, revue contradictoire (red team), pré-mortem, conseil stratégique sur un choix. Pas ici si l'on découpe un objectif en étapes (→ plan_decompo) ou si l'on rédige une spécification (→ plan_spec).",
       "bench": {
         "score": 100,
         "source": "TMB"
@@ -186,7 +189,7 @@
       "key": "fast_tools",
       "label": "Tools & fast coding",
       "model": "mercury-3-or",
-      "description": "Appels d'outils rapides, complétions courtes à faible latence, edits triviaux, tool-calling en boucle d'agent où la VITESSE prime sur la profondeur. Choisir cet axe quand la tâche est petite/mécanique et doit être servie vite, pas quand elle demande une vraie réflexion (→ axe de compétence correspondant).",
+      "description": "Petite tâche mécanique à servir vite, sans réflexion : retouche locale d'une ligne ou d'un identifiant dans un fichier, correction d'une coquille, changement d'une valeur, réordonner ou reformater un court contenu, conversion de format simple, commande shell d'une ligne, appel d'outil direct (lister, lire, écrire un fichier sur demande explicite). Choisir cet axe dès que la demande tient en une action mécanique, même si elle porte sur du Python ou du code. Pas ici si la tâche demande de concevoir, d'écrire beaucoup de code ou de raisonner (→ axe de compétence correspondant).",
       "verified": false
     },
     {
