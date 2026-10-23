@@ -39,26 +39,16 @@
     {
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
-      "model": "muse-spark-1.2-or",
+      "model": "meta-muse-spark-1.3",
       "description": "Protection des données personnelles et vie privée (RGPD, ePrivacy, loi belge vie privée) : registre des traitements, base légale, analyse d'impact (AIPD/DPIA), contrat de sous-traitance (DPA, art. 28), mentions d'information, politique de confidentialité, cookies et consentement, droits des personnes, transferts hors UE, violation de données. Pas ici si la question juridique dépasse les données personnelles ou compare plusieurs droits (→ legal_complex).",
-      "bench": {
-        "score": 100,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "legal_complex",
       "label": "Conformité multi-jur.",
-      "model": "muse-spark-1.2-or",
+      "model": "meta-muse-spark-1.3",
       "description": "Droit hors données personnelles, ou plusieurs juridictions : rédaction et revue de contrats (clauses, responsabilité, non-concurrence), droit des sociétés, du travail, commercial, fiscal, pénal, procédure, conformité sectorielle, comparaison de droits nationaux (Belgique, France, Luxembourg…), raisonnement juridique nuancé, jurisprudence. Pas ici si c'est strictement données personnelles / RGPD (→ legal_rgpd), ni si l'objet est un échange technique entre logiciels (formats, flux, interfaces) (→ plan_spec).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "reasoning",
@@ -74,34 +64,28 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "mimo-v2.6-flash-or",
+      "model": "ling-3.1-flash-or",
       "description": "Effectuer un calcul ou traiter des données chiffrées : arithmétique, pourcentages, intérêts, statistiques, conversions d'unités, estimations chiffrées, budget, tableur et formules, manipulation de tableaux ou de données structurées (CSV, JSON) sans écrire de programme. Pas ici si le raisonnement est logique ou qualitatif sans chiffres à calculer (→ reasoning), ni si l'on demande un script qui calcule (→ python ou axe du langage).",
+      "verified": true,
       "bench": {
         "score": 100,
         "source": "TMB"
-      },
-      "verified": true
+      }
     },
     {
       "key": "python",
       "label": "Python / scripts",
-      "model": "deepseek-v4-flash-0731-max-or",
+      "model": "deepseek-deepseek-v4.1-flash-1017",
       "description": "Le livrable est du code Python, neuf : script, automatisation, traitement de données (pandas), notebook, API ou backend Python, apprentissage automatique. Choisir cet axe dès que le langage cible est Python et que la tâche demande une vraie écriture de code. Pas ici pour une retouche mécanique d'une ligne (→ fast_tools), pour réparer un bug (→ debug), pour restructurer du code existant sans changer son comportement (→ refactoring), ni pour un autre langage (→ code_general / swift / react).",
-      "bench": {
-        "score": 96.8,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "code_general",
       "label": "Code général",
-      "model": "qwen3.8-prev-or",
+      "model": "mimo-v2.6-pro-or",
       "description": "Écrire du code neuf dans un langage sans axe dédié : Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, JavaScript ou TypeScript côté serveur, SQL, shell scripts de plusieurs lignes, configuration d'infrastructure (Docker, CI). À choisir seulement si aucun axe plus précis ne s'applique. Pas ici si le langage est Swift (→ swift), Python (→ python) ou du front React (→ react) ; pas ici pour réparer (→ debug), restructurer (→ refactoring) ou faire une retouche d'une ligne (→ fast_tools).",
       "bench": {
-        "score": 97.1,
-        "coverage": 1.0,
-        "n_tests": 10,
+        "score": 98.2,
         "source": "TMB"
       },
       "verified": true
@@ -133,10 +117,10 @@
     {
       "key": "swift",
       "label": "Swift",
-      "model": "glm-5.3-prime-or",
+      "model": "mimo-v2.6-pro-or",
       "description": "Tout ce qui concerne le code Swift et l'écosystème Apple : SwiftUI, UIKit, AppKit, application iOS/macOS/watchOS, Swift Package, Xcode, concurrence Swift (async/await, actors), Core Data, SwiftData, CLI Swift. Le langage prime : choisir cet axe même pour déboguer, restructurer ou retoucher du code Swift.",
       "bench": {
-        "score": 95,
+        "score": 96.5,
         "source": "TMB"
       },
       "verified": true
@@ -144,15 +128,9 @@
     {
       "key": "refactoring",
       "label": "Refactoring",
-      "model": "minimax3-or",
+      "model": "inception-mercury-3",
       "description": "Restructurer du code qui fonctionne SANS changer son comportement : extraire des fonctions ou des modules, découper un fichier, supprimer la duplication, renommer à l'échelle d'un module, moderniser une base de code vers une version plus récente du langage ou de ses outils, migrer vers une nouvelle API, réorganiser une arborescence ou une configuration éclatée, améliorer la lisibilité. Pas ici si l'on corrige un bug (→ debug), si l'on ajoute une fonctionnalité (→ axe du langage), si c'est du Swift (→ swift) ou une retouche d'une seule ligne (→ fast_tools).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "plan_decompo",
@@ -177,13 +155,9 @@
     {
       "key": "plan_judgment",
       "label": "Planning — jugement / pièges",
-      "model": "qwen3.8-prev-or",
+      "model": "deepseek-deepseek-v4.1-flash-1017",
       "description": "Évaluer de façon critique un plan, une décision ou une architecture : repérer les pièges et angles morts, arbitrer entre options, analyser les risques, revue contradictoire (red team), pré-mortem, conseil stratégique sur un choix. Pas ici si l'on découpe un objectif en étapes (→ plan_decompo) ou si l'on rédige une spécification (→ plan_spec).",
-      "bench": {
-        "score": 100,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "fast_tools",
@@ -221,11 +195,6 @@
       "or": "deepseek/deepseek-v4-flash-0731",
       "kind": "cloud"
     },
-    "muse-spark-1.2-or": {
-      "name": "muse-spark-1.2-OR",
-      "or": "meta/muse-spark-1.2",
-      "kind": "cloud"
-    },
     "qwen3.8-prev-or": {
       "name": "Qwen3.8-prev OR",
       "or": "qwen/qwen3.8-max-0902",
@@ -236,24 +205,9 @@
       "or": "xiaomi/mimo-v2.6-flash",
       "kind": "cloud"
     },
-    "minimax3-or": {
-      "name": "minimax3 OR",
-      "or": "minimax/minimax-m3",
-      "kind": "cloud"
-    },
     "mimo-v2.6-pro-or": {
       "name": "mimo-v2.6-pro-OR",
       "or": "xiaomi/mimo-v2.6-pro",
-      "kind": "cloud"
-    },
-    "glm-5.3-prime-or": {
-      "name": "glm-5.3-prime-OR",
-      "or": "z-ai/glm-5.3-prime",
-      "kind": "cloud"
-    },
-    "deepseek-v4-flash-0731-max-or": {
-      "name": "deepseek-v4-flash-0731-max OR",
-      "or": "deepseek/deepseek-v4-flash-0731",
       "kind": "cloud"
     },
     "xiaomi/mimo-v2.6-flash": {
@@ -263,6 +217,26 @@
     },
     "mercury-3-or": {
       "name": "mercury-3-or",
+      "or": "inception/mercury-3",
+      "kind": "cloud"
+    },
+    "meta-muse-spark-1.3": {
+      "name": "meta/muse-spark-1.3",
+      "or": "meta/muse-spark-1.3",
+      "kind": "cloud"
+    },
+    "ling-3.1-flash-or": {
+      "name": "ling-3.1-flash-OR",
+      "or": "inclusionai/ling-3.1-flash",
+      "kind": "cloud"
+    },
+    "deepseek-deepseek-v4.1-flash-1017": {
+      "name": "deepseek/deepseek-v4.1-flash-1017",
+      "or": "deepseek/deepseek-v4.1-flash-1017",
+      "kind": "cloud"
+    },
+    "inception-mercury-3": {
+      "name": "inception/mercury-3",
       "or": "inception/mercury-3",
       "kind": "cloud"
     }
