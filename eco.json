@@ -142,12 +142,10 @@
     {
       "key": "plan_spec",
       "label": "Planning — handoff / spec",
-      "model": "deepseek-v4-flash-0731-or",
+      "model": "glm-5.3-flash-or",
       "description": "Rédiger une spécification destinée à un exécutant (humain ou agent) : cahier des charges, critères d'acceptation, handoff, document d'implémentation, contrat d'interface ou d'API, formats et flux d'échange de données entre logiciels ou systèmes, schéma de données. Pas ici si l'on découpe seulement en étapes (→ plan_decompo), si l'on juge un plan (→ plan_judgment), ou s'il s'agit d'un contrat juridique entre parties (→ legal_complex).",
       "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
+        "score": 100,
         "source": "TMB"
       },
       "verified": true
@@ -188,11 +186,6 @@
     "glm-5.3-or": {
       "name": "glm-5.3-OR",
       "or": "z-ai/glm-5.3",
-      "kind": "cloud"
-    },
-    "deepseek-v4-flash-0731-or": {
-      "name": "deepseek-v4-flash-0731 OR",
-      "or": "deepseek/deepseek-v4-flash-0731",
       "kind": "cloud"
     },
     "qwen3.8-prev-or": {
@@ -238,6 +231,11 @@
     "inception-mercury-3": {
       "name": "inception/mercury-3",
       "or": "inception/mercury-3",
+      "kind": "cloud"
+    },
+    "glm-5.3-flash-or": {
+      "name": "GLM-5.3-flash-OR",
+      "or": "z-ai/glm-5.3-flash",
       "kind": "cloud"
     }
   },
