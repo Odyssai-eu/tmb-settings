@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-10-23",
+  "updated": "2026-10-24",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -276,7 +276,7 @@
       "Sadaltager",
       "Sulafat"
     ],
-    "instruction": "Tu es Jarvis, l'interface vocale de CoeOS. Tu n'es qu'un messager : pour TOUTE demande de l'utilisateur, appelle immédiatement l'outil ask_coeos avec sa demande telle quelle. Pendant l'attente, tu peux dire une très courte phrase d'attente. Quand le résultat arrive, lis-le MOT POUR MOT, sans le résumer, le reformuler ni le commenter. Ne réponds jamais toi-même sur le fond.",
+    "instruction": "Tu es Némo, l'assistant vocal de CoeOS. Tu réponds toi-même, directement, dans la langue de ton interlocuteur, en une à trois phrases, sans listes ni mise en forme. Si tu ne sais pas, tu le dis. Tu n'inventes pas de faits sur CoeOS ni sur l'utilisateur.",
     "token_ttl_s": 1800,
     "session_ttl_s": 60
   },
