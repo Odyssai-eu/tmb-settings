@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-10-24",
+  "updated": "2026-10-26",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -11,14 +11,15 @@
     "criteria": "label+full",
     "threshold": 0.5
   },
+  "decider_model": null,
   "axes": [
     {
       "key": "creative",
       "label": "Créatif / rédaction longue",
-      "model": "glm-5.3-or",
+      "model": "glm-glm-5.3",
       "description": "Écriture d'invention : fiction, nouvelle, conte, poème, chanson, scénario, dialogue de personnages, jeu de rôle, pastiche, texte personnel (lettre intime, discours de mariage), réécriture stylistique d'un texte littéraire, et création publicitaire (slogans, accroches, concept et textes d'une campagne de publicité). Le critère : on invente une forme ou une idée. Pas ici si le texte informe ou rend compte pour une organisation (article, lettre d'information, page de présentation, communication interne, courrier, rapport), même sur un ton narratif (→ redac_pro) ; pas ici si le livrable est du code (→ axes code) ou une spécification (→ plan_spec).",
       "bench": {
-        "score": 97.8,
+        "score": 100.0,
         "coverage": 1.0,
         "n_tests": 1,
         "source": "TMB"
@@ -28,10 +29,12 @@
     {
       "key": "redac_pro",
       "label": "Rédaction pro / business",
-      "model": "mimo-v2.6-flash-or",
+      "model": "stepfun-step-5-preview",
       "description": "Texte qui informe, explique ou rend compte pour une entreprise, une organisation ou un usage professionnel, quel que soit le ton : note de synthèse, rapport, recommandation, argumentaire, courriel ou courrier professionnel, compte rendu, communiqué, publication éditoriale d'une organisation (article, lettre d'information, page de présentation, histoire de l'entreprise racontée), fiche produit, présentation, document corporate, mise en forme publiable d'un document de travail. Aussi l'axe par défaut d'une demande d'écriture générale non technique. Pas ici si l'on invente une fiction, un texte personnel ou une création publicitaire (slogans, accroches, campagne) (→ creative), une spécification pour un exécutant (→ plan_spec), ou une analyse juridique (→ legal_rgpd / legal_complex).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -39,21 +42,33 @@
     {
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
-      "model": "meta-muse-spark-1.3",
+      "model": "stepfun-step-5-preview",
       "description": "Protection des données personnelles et vie privée (RGPD, ePrivacy, loi belge vie privée) : registre des traitements, base légale, analyse d'impact (AIPD/DPIA), contrat de sous-traitance (DPA, art. 28), mentions d'information, politique de confidentialité, cookies et consentement, droits des personnes, transferts hors UE, violation de données. Pas ici si la question juridique dépasse les données personnelles ou compare plusieurs droits (→ legal_complex).",
-      "verified": false
+      "bench": {
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "legal_complex",
       "label": "Conformité multi-jur.",
-      "model": "meta-muse-spark-1.3",
+      "model": "ling-3.1-flash",
       "description": "Droit hors données personnelles, ou plusieurs juridictions : rédaction et revue de contrats (clauses, responsabilité, non-concurrence), droit des sociétés, du travail, commercial, fiscal, pénal, procédure, conformité sectorielle, comparaison de droits nationaux (Belgique, France, Luxembourg…), raisonnement juridique nuancé, jurisprudence. Pas ici si c'est strictement données personnelles / RGPD (→ legal_rgpd), ni si l'objet est un échange technique entre logiciels (formats, flux, interfaces) (→ plan_spec).",
-      "verified": false
+      "bench": {
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "reasoning",
       "label": "Raisonnement / logique",
-      "model": "qwen3.8-prev-or",
+      "model": "muse-spark-open-or",
       "description": "Raisonnement qualitatif ou logique sans calcul : déduction, logique formelle, démonstration, réfutation, énigme, paradoxe, argumentation, analyse critique d'une affirmation, explication conceptuelle, comparaison d'idées. Une démonstration ou un contre-exemple mathématique reste ici tant qu'il ne s'agit pas d'effectuer un calcul chiffré. Pas ici si la réponse exige de calculer des nombres ou de traiter des données (→ calc), si le livrable est du code (→ axes code), ou si c'est une question juridique (→ legal_*).",
       "bench": {
         "score": 100,
@@ -64,39 +79,45 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "ling-3.1-flash-or",
+      "model": "ling-3.1-flash",
       "description": "Effectuer un calcul ou traiter des données chiffrées : arithmétique, pourcentages, intérêts, statistiques, conversions d'unités, estimations chiffrées, budget, tableur et formules, manipulation de tableaux ou de données structurées (CSV, JSON) sans écrire de programme. Pas ici si le raisonnement est logique ou qualitatif sans chiffres à calculer (→ reasoning), ni si l'on demande un script qui calcule (→ python ou axe du langage).",
-      "verified": true,
       "bench": {
-        "score": 100,
-        "source": "TMB"
-      }
-    },
-    {
-      "key": "python",
-      "label": "Python / scripts",
-      "model": "deepseek-deepseek-v4.1-flash-1017",
-      "description": "Le livrable est du code Python, neuf : script, automatisation, traitement de données (pandas), notebook, API ou backend Python, apprentissage automatique. Choisir cet axe dès que le langage cible est Python et que la tâche demande une vraie écriture de code. Pas ici pour une retouche mécanique d'une ligne (→ fast_tools), pour réparer un bug (→ debug), pour restructurer du code existant sans changer son comportement (→ refactoring), ni pour un autre langage (→ code_general / swift / react).",
-      "verified": false
-    },
-    {
-      "key": "code_general",
-      "label": "Code général",
-      "model": "mimo-v2.6-pro-or",
-      "description": "Écrire du code neuf dans un langage sans axe dédié : Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, JavaScript ou TypeScript côté serveur, SQL, shell scripts de plusieurs lignes, configuration d'infrastructure (Docker, CI). À choisir seulement si aucun axe plus précis ne s'applique. Pas ici si le langage est Swift (→ swift), Python (→ python) ou du front React (→ react) ; pas ici pour réparer (→ debug), restructurer (→ refactoring) ou faire une retouche d'une ligne (→ fast_tools).",
-      "bench": {
-        "score": 98.2,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
     },
     {
+      "key": "python",
+      "label": "Python / scripts",
+      "model": "or-mimo-v2.6-pro",
+      "description": "Le livrable est du code Python, neuf : script, automatisation, traitement de données (pandas), notebook, API ou backend Python, apprentissage automatique. Choisir cet axe dès que le langage cible est Python et que la tâche demande une vraie écriture de code. Pas ici pour une retouche mécanique d'une ligne (→ fast_tools), pour réparer un bug (→ debug), pour restructurer du code existant sans changer son comportement (→ refactoring), ni pour un autre langage (→ code_general / swift / react).",
+      "bench": {
+        "score": 99.25,
+        "coverage": 1.0,
+        "n_tests": 4,
+        "source": "TMB"
+      },
+      "verified": true
+    },
+    {
+      "key": "code_general",
+      "label": "Code général",
+      "model": "qwen-qwen3.8-max-0902",
+      "description": "Écrire du code neuf dans un langage sans axe dédié : Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, JavaScript ou TypeScript côté serveur, SQL, shell scripts de plusieurs lignes, configuration d'infrastructure (Docker, CI). À choisir seulement si aucun axe plus précis ne s'applique. Pas ici si le langage est Swift (→ swift), Python (→ python) ou du front React (→ react) ; pas ici pour réparer (→ debug), restructurer (→ refactoring) ou faire une retouche d'une ligne (→ fast_tools).",
+      "verified": false
+    },
+    {
       "key": "debug",
       "label": "Debug",
-      "model": "mimo-v2.6-pro-or",
+      "model": "ling-3.1-flash",
       "description": "Comprendre et corriger un défaut dans du code existant, quel que soit le langage (sauf Swift) : message d'erreur, trace de pile, exception, comportement inattendu, test qui échoue, régression, fuite mémoire, performance anormale. L'intention est RÉPARER ou EXPLIQUER une panne. Pas ici si le code est en Swift (→ swift, le langage prime), si l'on écrit du code neuf (→ axe du langage), ou si le code fonctionne et qu'on veut le restructurer (→ refactoring).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -104,7 +125,7 @@
     {
       "key": "react",
       "label": "React / front",
-      "model": "mimo-v2.6-flash-or",
+      "model": "deepseek-v4-flash-0731",
       "description": "Front-end web : React, JSX/TSX, composants d'interface, hooks, état client, formulaires, routage côté client, Next.js, Tailwind/CSS, accessibilité d'une page, intégration d'une maquette. Pas ici si c'est du JavaScript/TypeScript côté serveur (→ code_general), une application native Apple (→ swift), ou un bug à réparer dans un composant existant (→ debug).",
       "bench": {
         "score": 98.0,
@@ -117,10 +138,10 @@
     {
       "key": "swift",
       "label": "Swift",
-      "model": "mimo-v2.6-pro-or",
+      "model": "deepseek-v4.1-flash-1017",
       "description": "Tout ce qui concerne le code Swift et l'écosystème Apple : SwiftUI, UIKit, AppKit, application iOS/macOS/watchOS, Swift Package, Xcode, concurrence Swift (async/await, actors), Core Data, SwiftData, CLI Swift. Le langage prime : choisir cet axe même pour déboguer, restructurer ou retoucher du code Swift.",
       "bench": {
-        "score": 96.5,
+        "score": 98,
         "source": "TMB"
       },
       "verified": true
@@ -128,24 +149,38 @@
     {
       "key": "refactoring",
       "label": "Refactoring",
-      "model": "inception-mercury-3",
+      "model": "minimax3",
       "description": "Restructurer du code qui fonctionne SANS changer son comportement : extraire des fonctions ou des modules, découper un fichier, supprimer la duplication, renommer à l'échelle d'un module, moderniser une base de code vers une version plus récente du langage ou de ses outils, migrer vers une nouvelle API, réorganiser une arborescence ou une configuration éclatée, améliorer la lisibilité. Pas ici si l'on corrige un bug (→ debug), si l'on ajoute une fonctionnalité (→ axe du langage), si c'est du Swift (→ swift) ou une retouche d'une seule ligne (→ fast_tools).",
-      "verified": false
+      "bench": {
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "plan_decompo",
       "label": "Planning — décomposition",
-      "model": "mimo-v2.6-flash-or",
+      "model": "stepfun-step-5-preview",
       "description": "Découper un objectif en étapes : plan de projet, liste de tâches, backlog, jalons, séquencement, répartition du travail, feuille de route. Le livrable est une liste ordonnée d'étapes. Pas ici si l'on rédige la spécification détaillée d'une étape pour un exécutant (→ plan_spec) ou si l'on juge les risques d'un plan (→ plan_judgment).",
-      "verified": false
+      "bench": {
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "plan_spec",
       "label": "Planning — handoff / spec",
-      "model": "glm-5.3-flash-or",
+      "model": "stepfun-step-5-preview",
       "description": "Rédiger une spécification destinée à un exécutant (humain ou agent) : cahier des charges, critères d'acceptation, handoff, document d'implémentation, contrat d'interface ou d'API, formats et flux d'échange de données entre logiciels ou systèmes, schéma de données. Pas ici si l'on découpe seulement en étapes (→ plan_decompo), si l'on juge un plan (→ plan_judgment), ou s'il s'agit d'un contrat juridique entre parties (→ legal_complex).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -155,14 +190,48 @@
       "label": "Planning — jugement / pièges",
       "model": "deepseek-deepseek-v4.1-flash-1017",
       "description": "Évaluer de façon critique un plan, une décision ou une architecture : repérer les pièges et angles morts, arbitrer entre options, analyser les risques, revue contradictoire (red team), pré-mortem, conseil stratégique sur un choix. Pas ici si l'on découpe un objectif en étapes (→ plan_decompo) ou si l'on rédige une spécification (→ plan_spec).",
-      "verified": false
+      "bench": {
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 2,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "fast_tools",
       "label": "Tools & fast coding",
-      "model": "mercury-3-or",
+      "model": "mercury-2.5",
       "description": "Petite tâche mécanique à servir vite, sans réflexion : retouche locale d'une ligne ou d'un identifiant dans un fichier, correction d'une coquille, changement d'une valeur, réordonner ou reformater un court contenu, conversion de format simple, commande shell d'une ligne, appel d'outil direct (lister, lire, écrire un fichier sur demande explicite). Choisir cet axe dès que la demande tient en une action mécanique, même si elle porte sur du Python ou du code. Pas ici si la tâche demande de concevoir, d'écrire beaucoup de code ou de raisonner (→ axe de compétence correspondant).",
+      "bench": {
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
+        "source": "TMB"
+      },
       "verified": false
+    },
+    {
+      "key": "agent_exec",
+      "label": "Agent — exécution outillée",
+      "model": "mercury-3",
+      "description": "Discipline d'exécution d'un agent outillé : bonne sélection et séquence de tools, reproduire avant de corriger, localiser par preuve, vérifier après action, cohérence multi-étapes. Pas ici si la tâche est du code pur hors boucle d'outils (→ axes code) ou du jugement de sûreté (→ agent_safety).",
+      "bench": {
+        "score": 100,
+        "source": "TMB"
+      },
+      "verified": true
+    },
+    {
+      "key": "agent_safety",
+      "label": "Agent — discipline / sûreté",
+      "model": "stepfun-step-5-preview",
+      "description": "Sûreté et discipline d'un agent : rester dans le scope, s'arrêter au bon moment, refuser une action destructrice non demandée, détecter un outil qui ment, respecter le format de tool-call. Pas ici si on juge la qualité d'exécution fonctionnelle (→ agent_exec).",
+      "bench": {
+        "score": 100,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "voice",
@@ -173,34 +242,47 @@
       "thinking": false,
       "instruction": "Réponse destinée à être lue à voix haute : deux à quatre phrases courtes, sans markdown, sans liste, sans titre.",
       "suggested": "qwen/qwen3-next-80b-a3b-instruct"
-    },
-    {
-      "key": "agent_exec",
-      "label": "Agent — exécution outillée",
-      "model": "mercury-3-or",
-      "description": "Tours agent de l app (x-coeos-axis: agent_exec) : boucle d outils, web, sous-agents. Servi par en-tête seulement, jamais choisi par le décideur.",
-      "decider": false
     }
   ],
   "models": {
-    "glm-5.3-or": {
-      "name": "glm-5.3-OR",
-      "or": "z-ai/glm-5.3",
+    "glm-glm-5.3": {
+      "name": "glm-glm-5.3",
+      "endpoint": "GLM-glm-5.3",
       "kind": "cloud"
     },
-    "qwen3.8-prev-or": {
-      "name": "Qwen3.8-prev OR",
-      "or": "qwen/qwen3.8-max-0902",
+    "stepfun-step-5-preview": {
+      "name": "stepfun-step-5-preview",
+      "or": "stepfun/step-5-preview",
       "kind": "cloud"
     },
-    "mimo-v2.6-flash-or": {
-      "name": "mimo-v2.6-flash-or",
-      "or": "xiaomi/mimo-v2.6-flash",
+    "ling-3.1-flash": {
+      "name": "ling-3.1-flash",
+      "or": "inclusionai/ling-3.1-flash",
       "kind": "cloud"
     },
-    "mimo-v2.6-pro-or": {
-      "name": "mimo-v2.6-pro-OR",
+    "or-mimo-v2.6-pro": {
+      "name": "mimo-v2.6-pro",
       "or": "xiaomi/mimo-v2.6-pro",
+      "kind": "cloud"
+    },
+    "deepseek-v4-flash-0731": {
+      "name": "deepseek-v4-flash-0731",
+      "or": "deepseek/deepseek-v4-flash-0731",
+      "kind": "cloud"
+    },
+    "minimax3": {
+      "name": "minimax3",
+      "or": "minimax/minimax-m3",
+      "kind": "cloud"
+    },
+    "deepseek-deepseek-v4.1-flash-1017": {
+      "name": "deepseek-v4.1-flash-1017",
+      "or": "deepseek/deepseek-v4.1-flash-1017",
+      "kind": "cloud"
+    },
+    "mercury-2.5": {
+      "name": "mercury-2.5",
+      "or": "inception/mercury-2.5",
       "kind": "cloud"
     },
     "xiaomi/mimo-v2.6-flash": {
@@ -208,34 +290,24 @@
       "endpoint": "xiaomi/mimo-v2.6-flash",
       "provider": "openrouter"
     },
-    "mercury-3-or": {
-      "name": "mercury-3-or",
-      "or": "inception/mercury-3",
+    "muse-spark-open-or": {
+      "name": "muse-spark-open-or",
+      "or": "meta/muse-spark-open",
       "kind": "cloud"
     },
-    "meta-muse-spark-1.3": {
-      "name": "meta/muse-spark-1.3",
-      "or": "meta/muse-spark-1.3",
+    "qwen-qwen3.8-max-0902": {
+      "name": "qwen/qwen3.8-max-0902",
+      "or": "qwen/qwen3.8-max-0902",
       "kind": "cloud"
     },
-    "ling-3.1-flash-or": {
-      "name": "ling-3.1-flash-OR",
-      "or": "inclusionai/ling-3.1-flash",
-      "kind": "cloud"
-    },
-    "deepseek-deepseek-v4.1-flash-1017": {
-      "name": "deepseek/deepseek-v4.1-flash-1017",
+    "deepseek-v4.1-flash-1017": {
+      "name": "deepseek-v4.1-flash-1017",
       "or": "deepseek/deepseek-v4.1-flash-1017",
       "kind": "cloud"
     },
-    "inception-mercury-3": {
-      "name": "inception/mercury-3",
+    "mercury-3": {
+      "name": "mercury-3",
       "or": "inception/mercury-3",
-      "kind": "cloud"
-    },
-    "glm-5.3-flash-or": {
-      "name": "GLM-5.3-flash-OR",
-      "or": "z-ai/glm-5.3-flash",
       "kind": "cloud"
     }
   },
