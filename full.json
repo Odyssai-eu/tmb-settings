@@ -37,7 +37,8 @@
         "source": "TMB"
       },
       "verified": true,
-      "decider": true
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "legal_rgpd",
@@ -51,7 +52,8 @@
         "source": "TMB"
       },
       "verified": true,
-      "decider": true
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "legal_complex",
@@ -65,7 +67,8 @@
         "source": "TMB"
       },
       "verified": true,
-      "decider": true
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "reasoning",
