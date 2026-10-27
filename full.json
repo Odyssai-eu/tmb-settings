@@ -22,7 +22,9 @@
         "score": 97.78,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "thinking": false,
+      "decider": true
     },
     {
       "key": "redac_pro",
@@ -35,7 +37,8 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true
     },
     {
       "key": "legal_rgpd",
@@ -48,7 +51,8 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true
     },
     {
       "key": "legal_complex",
@@ -61,7 +65,8 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true
     },
     {
       "key": "reasoning",
@@ -74,7 +79,9 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "calc",
@@ -87,7 +94,9 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "python",
@@ -100,7 +109,9 @@
         "n_tests": 4,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "code_general",
@@ -113,7 +124,9 @@
         "n_tests": 10,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "debug",
@@ -126,7 +139,9 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "react",
@@ -137,21 +152,27 @@
         "score": 98,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "swift",
       "label": "Swift",
       "model": "moonshotai-kimi-k3",
       "description": "Everything about Swift code and the Apple ecosystem: SwiftUI, UIKit, AppKit, iOS/macOS/watchOS apps, Swift Package, Xcode, Swift concurrency (async/await, actors), Core Data, SwiftData, Swift CLI. The language wins: choose this axis even to debug, restructure or edit Swift code.",
-      "verified": false
+      "verified": false,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "refactoring",
       "label": "Refactoring",
       "model": "tencent-hy3",
       "description": "Restructure working code WITHOUT changing its behaviour: extract functions or modules, split a file, remove duplication, rename across a module, modernise a codebase to a newer language or tooling version, migrate to a new API, reorganise a tree or a scattered configuration, improve readability. Not here if a bug is being fixed (-> debug), a feature added (-> language axis), if it is Swift (-> swift) or a single-line edit (-> fast_tools).",
-      "verified": false
+      "verified": false,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "plan_decompo",
@@ -164,7 +185,9 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "plan_spec",
@@ -177,7 +200,9 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "plan_judgment",
@@ -190,7 +215,9 @@
         "n_tests": 2,
         "source": "TMB"
       },
-      "verified": true
+      "verified": true,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "fast_tools",
@@ -203,7 +230,8 @@
         "n_tests": 1,
         "source": "TMB"
       },
-      "verified": false
+      "verified": false,
+      "decider": true
     },
     {
       "key": "voice",
@@ -220,14 +248,17 @@
       "label": "Agent - tool-driven execution",
       "description": "The prompt places the model as an AGENT working in a session (tools listed, commands it ran and their output, files it edited, steps already done) and asks HOW TO CARRY OUT the work: which tool calls in which order, reproduce before fixing, locate the cause by evidence (search, read) rather than guess, the single next command or edit after an error, verify after acting, keep a multi-step task consistent (detect that an earlier step was done wrong and repair it before continuing). The focus is effective execution of the task. Choose this axis over debug, python or refactoring whenever the request is about the agent's own sequence of actions rather than the code alone. Tie-breakers: whether to act at all, when to stop, whether the task is really done, staying in scope, refusing or asking first, distrusting a tool's output -> agent_safety. Examples: 'With shell and editor tools, give the ordered commands to make the build pass', 'Your deploy command just printed a permission error: what single command do you run next?', 'You renamed the column in two of three services: list what remains and in which order'. Also: choosing the right file and function to edit by quoting evidence from the given snippets, when a decoy file looks relevant, and describing the minimal edit.",
       "model": "tencent-hy4-preview",
-      "verified": false
+      "verified": false,
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "agent_safety",
       "label": "Agent - discipline / safety",
       "description": "The prompt places the model as an AGENT and asks for a JUDGMENT ON ITS OWN CONDUCT rather than on how to execute: is the task really done or not (do not declare success while a test still fails), stop at the right time, stay strictly in the requested scope (fix the bug, do not rename or refactor what was not asked), ask one clarifying question before acting on an underspecified task, refuse or confirm before a destructive or irreversible action, detect that a tool response is inconsistent or lying (wrong file, zero bytes, status ok but nothing done), respect the exact tool-call format. Choose this axis over debug or agent_exec whenever the core question is 'should I act, stop, ask, or trust this', or 'what must I deliberately not do'. Tie-breakers: the order and choice of tool calls to accomplish the task -> agent_exec. Examples: 'The linter still reports two errors after your change: can you close the ticket?', 'The upload tool returned success but the bucket listing is empty: what do you conclude?', 'User says clean up the server: what do you check or ask before deleting anything?'. Also: a task given with a destructive tool (delete, overwrite, send, pay, deploy) where some items are explicitly protected and the answer must limit the call to what is allowed and state what is not touched; a bug-fix task where others push for extra changes and the answer must keep the change minimal and say what was deliberately left alone.",
       "model": "tencent-hy3",
-      "verified": false
+      "verified": false,
+      "decider": true
     }
   ],
   "models": {
