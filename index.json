@@ -1,10 +1,6 @@
 {
   "settings": [
-    "eco",
-    "full",
-    "aa",
-    "aa-eco",
-    "eu"
+    "full"
   ],
-  "default": "eco"
+  "default": "full"
 }
