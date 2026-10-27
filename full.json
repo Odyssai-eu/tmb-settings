@@ -15,9 +15,9 @@
   "axes": [
     {
       "key": "creative",
-      "label": "Créatif / rédaction longue",
+      "label": "Creative / long-form writing",
       "model": "kimi-k3",
-      "description": "Écriture d'invention : fiction, nouvelle, conte, poème, chanson, scénario, dialogue de personnages, jeu de rôle, pastiche, texte personnel (lettre intime, discours de mariage), réécriture stylistique d'un texte littéraire, et création publicitaire (slogans, accroches, concept et textes d'une campagne de publicité). Le critère : on invente une forme ou une idée. Pas ici si le texte informe ou rend compte pour une organisation (article, lettre d'information, page de présentation, communication interne, courrier, rapport), même sur un ton narratif (→ redac_pro) ; pas ici si le livrable est du code (→ axes code) ou une spécification (→ plan_spec).",
+      "description": "Inventive writing: fiction, short story, tale, poem, song, screenplay, character dialogue, role-play, pastiche, personal text (private letter, wedding speech), stylistic rewriting of a literary text, and advertising creation (slogans, taglines, concept and copy for an ad campaign). The test: something is invented, a form or an idea. Not here if the text informs or reports on behalf of an organisation (article, newsletter, about page, internal communication, letter, report), even in a narrative tone (-> redac_pro); not here if the deliverable is code (-> code axes) or a specification (-> plan_spec).",
       "bench": {
         "score": 97.78,
         "source": "TMB"
@@ -26,9 +26,9 @@
     },
     {
       "key": "redac_pro",
-      "label": "Rédaction pro / business",
+      "label": "Professional / business writing",
       "model": "stepfun-step-5-preview",
-      "description": "Texte qui informe, explique ou rend compte pour une entreprise, une organisation ou un usage professionnel, quel que soit le ton : note de synthèse, rapport, recommandation, argumentaire, courriel ou courrier professionnel, compte rendu, communiqué, publication éditoriale d'une organisation (article, lettre d'information, page de présentation, histoire de l'entreprise racontée), fiche produit, présentation, document corporate, mise en forme publiable d'un document de travail. Aussi l'axe par défaut d'une demande d'écriture générale non technique. Pas ici si l'on invente une fiction, un texte personnel ou une création publicitaire (slogans, accroches, campagne) (→ creative), une spécification pour un exécutant (→ plan_spec), ou une analyse juridique (→ legal_rgpd / legal_complex).",
+      "description": "Text that informs, explains or reports for a company, an organisation or a professional use, whatever the tone: briefing note, report, recommendation, sales pitch, professional email or letter, minutes, press release, an organisation's editorial content (article, newsletter, about page, company story), product sheet, presentation, corporate document, turning a working draft into a publishable document. Also the default axis for a general non-technical writing request. Not here if it invents fiction, a personal text or advertising creation (slogans, taglines, campaign) (-> creative), a specification for an implementer (-> plan_spec), or a legal analysis (-> legal_rgpd / legal_complex).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -39,9 +39,9 @@
     },
     {
       "key": "legal_rgpd",
-      "label": "RGPD / conformité",
+      "label": "GDPR / data protection",
       "model": "stepfun-step-5-preview",
-      "description": "Protection des données personnelles et vie privée (RGPD, ePrivacy, loi belge vie privée) : registre des traitements, base légale, analyse d'impact (AIPD/DPIA), contrat de sous-traitance (DPA, art. 28), mentions d'information, politique de confidentialité, cookies et consentement, droits des personnes, transferts hors UE, violation de données. Pas ici si la question juridique dépasse les données personnelles ou compare plusieurs droits (→ legal_complex).",
+      "description": "Personal data protection and privacy (GDPR, ePrivacy, Belgian privacy law): records of processing, legal basis, data protection impact assessment (DPIA), processor agreement (DPA, art. 28), privacy notices, privacy policy, cookies and consent, data subject rights, transfers outside the EU, data breach. Not here if the legal question goes beyond personal data or compares several legal systems (-> legal_complex).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -52,9 +52,9 @@
     },
     {
       "key": "legal_complex",
-      "label": "Conformité multi-jur.",
+      "label": "Multi-jurisdiction legal",
       "model": "ling-3.1-flash",
-      "description": "Droit hors données personnelles, ou plusieurs juridictions : rédaction et revue de contrats (clauses, responsabilité, non-concurrence), droit des sociétés, du travail, commercial, fiscal, pénal, procédure, conformité sectorielle, comparaison de droits nationaux (Belgique, France, Luxembourg…), raisonnement juridique nuancé, jurisprudence. Pas ici si c'est strictement données personnelles / RGPD (→ legal_rgpd), ni si l'objet est un échange technique entre logiciels (formats, flux, interfaces) (→ plan_spec).",
+      "description": "Law other than personal data, or several jurisdictions: drafting and reviewing contracts (clauses, liability, non-compete), company law, employment, commercial, tax, criminal law, procedure, sector compliance, comparison of national laws (Belgium, France, Luxembourg...), nuanced legal reasoning, case law. Not here if it is strictly personal data / GDPR (-> legal_rgpd), nor if the subject is a technical exchange between software systems (formats, flows, interfaces) (-> plan_spec).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -65,9 +65,9 @@
     },
     {
       "key": "reasoning",
-      "label": "Raisonnement / logique",
+      "label": "Reasoning / logic",
       "model": "qwen3.5-397",
-      "description": "Raisonnement qualitatif ou logique sans calcul : déduction, logique formelle, démonstration, réfutation, énigme, paradoxe, argumentation, analyse critique d'une affirmation, explication conceptuelle, comparaison d'idées. Une démonstration ou un contre-exemple mathématique reste ici tant qu'il ne s'agit pas d'effectuer un calcul chiffré. Pas ici si la réponse exige de calculer des nombres ou de traiter des données (→ calc), si le livrable est du code (→ axes code), ou si c'est une question juridique (→ legal_*).",
+      "description": "Qualitative or logical reasoning without computation: deduction, formal logic, proof, refutation, riddle, paradox, argumentation, critical analysis of a claim, conceptual explanation, comparison of ideas. A mathematical proof or counter-example stays here as long as no numeric calculation has to be carried out. Not here if the answer requires computing numbers or processing data (-> calc), if the deliverable is code (-> code axes), or if it is a legal question (-> legal_*).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -78,9 +78,9 @@
     },
     {
       "key": "calc",
-      "label": "Calcul / structuré",
+      "label": "Calculation / structured data",
       "model": "ling-3.1-flash",
-      "description": "Effectuer un calcul ou traiter des données chiffrées : arithmétique, pourcentages, intérêts, statistiques, conversions d'unités, estimations chiffrées, budget, tableur et formules, manipulation de tableaux ou de données structurées (CSV, JSON) sans écrire de programme. Pas ici si le raisonnement est logique ou qualitatif sans chiffres à calculer (→ reasoning), ni si l'on demande un script qui calcule (→ python ou axe du langage).",
+      "description": "Carry out a calculation or process numeric data: arithmetic, percentages, interest, statistics, unit conversions, numeric estimates, budget, spreadsheet and formulas, handling tables or structured data (CSV, JSON) without writing a program. Not here if the reasoning is logical or qualitative with no numbers to compute (-> reasoning), nor if a script that computes is requested (-> python or the language axis).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -93,7 +93,7 @@
       "key": "python",
       "label": "Python / scripts",
       "model": "or-mimo-v2.6-pro",
-      "description": "Le livrable est du code Python, neuf : script, automatisation, traitement de données (pandas), notebook, API ou backend Python, apprentissage automatique. Choisir cet axe dès que le langage cible est Python et que la tâche demande une vraie écriture de code. Pas ici pour une retouche mécanique d'une ligne (→ fast_tools), pour réparer un bug (→ debug), pour restructurer du code existant sans changer son comportement (→ refactoring), ni pour un autre langage (→ code_general / swift / react).",
+      "description": "The deliverable is new Python code: script, automation, data processing (pandas), notebook, Python API or backend, machine learning. Choose this axis as soon as the target language is Python and the task requires real code writing. Not here for a mechanical one-line edit (-> fast_tools), to fix a bug (-> debug), to restructure existing code without changing its behaviour (-> refactoring), nor for another language (-> code_general / swift / react).",
       "bench": {
         "score": 99.25,
         "coverage": 1.0,
@@ -104,9 +104,9 @@
     },
     {
       "key": "code_general",
-      "label": "Code général",
+      "label": "General code",
       "model": "qwen3.8-max-prime",
-      "description": "Écrire du code neuf dans un langage sans axe dédié : Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, JavaScript ou TypeScript côté serveur, SQL, shell scripts de plusieurs lignes, configuration d'infrastructure (Docker, CI). À choisir seulement si aucun axe plus précis ne s'applique. Pas ici si le langage est Swift (→ swift), Python (→ python) ou du front React (→ react) ; pas ici pour réparer (→ debug), restructurer (→ refactoring) ou faire une retouche d'une ligne (→ fast_tools).",
+      "description": "Write new code in a language without a dedicated axis: Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, server-side JavaScript or TypeScript, SQL, multi-line shell scripts, infrastructure configuration (Docker, CI). Choose only if no more specific axis applies. Not here if the language is Swift (-> swift), Python (-> python) or React front-end (-> react); not here to fix (-> debug), restructure (-> refactoring) or make a one-line edit (-> fast_tools).",
       "bench": {
         "score": 99.22,
         "coverage": 1.0,
@@ -119,7 +119,7 @@
       "key": "debug",
       "label": "Debug",
       "model": "ling-3.1-flash",
-      "description": "Comprendre et corriger un défaut dans du code existant, quel que soit le langage (sauf Swift) : message d'erreur, trace de pile, exception, comportement inattendu, test qui échoue, régression, fuite mémoire, performance anormale. L'intention est RÉPARER ou EXPLIQUER une panne. Pas ici si le code est en Swift (→ swift, le langage prime), si l'on écrit du code neuf (→ axe du langage), ou si le code fonctionne et qu'on veut le restructurer (→ refactoring).",
+      "description": "Understand and fix a defect in existing code, in any language (except Swift): error message, stack trace, exception, unexpected behaviour, failing test, regression, memory leak, abnormal performance. The intent is to REPAIR or EXPLAIN a failure. Not here if the code is Swift (-> swift, the language wins), if new code is being written (-> language axis), or if the code works and should be restructured (-> refactoring). When the prompt places the model as an AGENT acting step by step in a session (tools listed, commands it ran and their output, 'your next action', 'are you done', what it should or should not touch), the request is about the agent's conduct -> agent_exec or agent_safety, even if a bug is involved.",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -130,9 +130,9 @@
     },
     {
       "key": "react",
-      "label": "React / front",
+      "label": "React / front-end",
       "model": "deepseek-v4-pro",
-      "description": "Front-end web : React, JSX/TSX, composants d'interface, hooks, état client, formulaires, routage côté client, Next.js, Tailwind/CSS, accessibilité d'une page, intégration d'une maquette. Pas ici si c'est du JavaScript/TypeScript côté serveur (→ code_general), une application native Apple (→ swift), ou un bug à réparer dans un composant existant (→ debug).",
+      "description": "Web front-end: React, JSX/TSX, UI components, hooks, client state, forms, client-side routing, Next.js, Tailwind/CSS, page accessibility, implementing a mockup. Not here if it is server-side JavaScript/TypeScript (-> code_general), a native Apple app (-> swift), or a bug to fix in an existing component (-> debug).",
       "bench": {
         "score": 98,
         "source": "TMB"
@@ -143,21 +143,21 @@
       "key": "swift",
       "label": "Swift",
       "model": "moonshotai-kimi-k3",
-      "description": "Tout ce qui concerne le code Swift et l'écosystème Apple : SwiftUI, UIKit, AppKit, application iOS/macOS/watchOS, Swift Package, Xcode, concurrence Swift (async/await, actors), Core Data, SwiftData, CLI Swift. Le langage prime : choisir cet axe même pour déboguer, restructurer ou retoucher du code Swift.",
+      "description": "Everything about Swift code and the Apple ecosystem: SwiftUI, UIKit, AppKit, iOS/macOS/watchOS apps, Swift Package, Xcode, Swift concurrency (async/await, actors), Core Data, SwiftData, Swift CLI. The language wins: choose this axis even to debug, restructure or edit Swift code.",
       "verified": false
     },
     {
       "key": "refactoring",
       "label": "Refactoring",
       "model": "tencent-hy3",
-      "description": "Restructurer du code qui fonctionne SANS changer son comportement : extraire des fonctions ou des modules, découper un fichier, supprimer la duplication, renommer à l'échelle d'un module, moderniser une base de code vers une version plus récente du langage ou de ses outils, migrer vers une nouvelle API, réorganiser une arborescence ou une configuration éclatée, améliorer la lisibilité. Pas ici si l'on corrige un bug (→ debug), si l'on ajoute une fonctionnalité (→ axe du langage), si c'est du Swift (→ swift) ou une retouche d'une seule ligne (→ fast_tools).",
+      "description": "Restructure working code WITHOUT changing its behaviour: extract functions or modules, split a file, remove duplication, rename across a module, modernise a codebase to a newer language or tooling version, migrate to a new API, reorganise a tree or a scattered configuration, improve readability. Not here if a bug is being fixed (-> debug), a feature added (-> language axis), if it is Swift (-> swift) or a single-line edit (-> fast_tools).",
       "verified": false
     },
     {
       "key": "plan_decompo",
-      "label": "Planning — décomposition",
+      "label": "Planning - decomposition",
       "model": "stepfun-step-5-preview",
-      "description": "Découper un objectif en étapes : plan de projet, liste de tâches, backlog, jalons, séquencement, répartition du travail, feuille de route. Le livrable est une liste ordonnée d'étapes. Pas ici si l'on rédige la spécification détaillée d'une étape pour un exécutant (→ plan_spec) ou si l'on juge les risques d'un plan (→ plan_judgment).",
+      "description": "Break a goal into steps: project plan, task list, backlog, milestones, sequencing, work split, roadmap. The deliverable is an ordered list of steps. Not here if the detailed specification of a step is written for an implementer (-> plan_spec) or if the risks of a plan are judged (-> plan_judgment).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -168,9 +168,9 @@
     },
     {
       "key": "plan_spec",
-      "label": "Planning — handoff / spec",
+      "label": "Planning - handoff / spec",
       "model": "stepfun-step-5-preview",
-      "description": "Rédiger une spécification destinée à un exécutant (humain ou agent) : cahier des charges, critères d'acceptation, handoff, document d'implémentation, contrat d'interface ou d'API, formats et flux d'échange de données entre logiciels ou systèmes, schéma de données. Pas ici si l'on découpe seulement en étapes (→ plan_decompo), si l'on juge un plan (→ plan_judgment), ou s'il s'agit d'un contrat juridique entre parties (→ legal_complex).",
+      "description": "Write a specification for an implementer (human or agent): requirements document, acceptance criteria, handoff, implementation document, interface or API contract, data exchange formats and flows between software systems, data schema. Not here if the goal is only split into steps (-> plan_decompo), if a plan is judged (-> plan_judgment), or if it is a legal contract between parties (-> legal_complex).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -181,9 +181,9 @@
     },
     {
       "key": "plan_judgment",
-      "label": "Planning — jugement / pièges",
+      "label": "Planning - judgment / pitfalls",
       "model": "deepseek-deepseek-v4.1-flash-1017",
-      "description": "Évaluer de façon critique un plan, une décision ou une architecture : repérer les pièges et angles morts, arbitrer entre options, analyser les risques, revue contradictoire (red team), pré-mortem, conseil stratégique sur un choix. Pas ici si l'on découpe un objectif en étapes (→ plan_decompo) ou si l'on rédige une spécification (→ plan_spec).",
+      "description": "Critically evaluate a plan, a decision or an architecture: spot pitfalls and blind spots, arbitrate between options, risk analysis, adversarial review (red team), pre-mortem, strategic advice on a choice. Not here if a goal is broken into steps (-> plan_decompo) or a specification is written (-> plan_spec).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -196,7 +196,7 @@
       "key": "fast_tools",
       "label": "Tools & fast coding",
       "model": "mercury-2.5",
-      "description": "Petite tâche mécanique à servir vite, sans réflexion : retouche locale d'une ligne ou d'un identifiant dans un fichier, correction d'une coquille, changement d'une valeur, réordonner ou reformater un court contenu, conversion de format simple, commande shell d'une ligne, appel d'outil direct (lister, lire, écrire un fichier sur demande explicite). Choisir cet axe dès que la demande tient en une action mécanique, même si elle porte sur du Python ou du code. Pas ici si la tâche demande de concevoir, d'écrire beaucoup de code ou de raisonner (→ axe de compétence correspondant).",
+      "description": "Small mechanical task to serve fast, with no thinking: local edit of one line or one identifier in a file, typo fix, changing a value, reordering or reformatting short content, simple format conversion, one-line shell command, direct tool call (list, read, write a file on explicit request). Choose this axis as soon as the request is one mechanical action, even on Python or code. Not here if the task requires designing, writing a lot of code or reasoning (-> the matching skill axis).",
       "bench": {
         "score": 100.0,
         "coverage": 1.0,
@@ -207,9 +207,9 @@
     },
     {
       "key": "voice",
-      "label": "Voix (oral)",
+      "label": "Voice (spoken)",
       "model": "xiaomi/mimo-v2.6-flash",
-      "description": "Tours du mode vocal : réponse orale courte, deux à quatre phrases, sans markdown ni liste. Modèle rapide sans raisonnement.",
+      "description": "Voice mode turns: short spoken answer, two to four sentences, no markdown or lists. Fast model without reasoning.",
       "decider": false,
       "thinking": false,
       "instruction": "Réponse destinée à être lue à voix haute : deux à quatre phrases courtes, sans markdown, sans liste, sans titre.",
@@ -217,15 +217,15 @@
     },
     {
       "key": "agent_exec",
-      "label": "Agent — exécution outillée",
-      "description": "Discipline d'exécution d'un agent outillé : bonne sélection et séquence de tools, reproduire avant de corriger, localiser par preuve, vérifier après action, cohérence multi-étapes. Pas ici si la tâche est du code pur hors boucle d'outils (→ axes code) ou du jugement de sûreté (→ agent_safety).",
+      "label": "Agent - tool-driven execution",
+      "description": "The prompt places the model as an AGENT working in a session (tools listed, commands it ran and their output, files it edited, steps already done) and asks HOW TO CARRY OUT the work: which tool calls in which order, reproduce before fixing, locate the cause by evidence (search, read) rather than guess, the single next command or edit after an error, verify after acting, keep a multi-step task consistent (detect that an earlier step was done wrong and repair it before continuing). The focus is effective execution of the task. Choose this axis over debug, python or refactoring whenever the request is about the agent's own sequence of actions rather than the code alone. Tie-breakers: whether to act at all, when to stop, whether the task is really done, staying in scope, refusing or asking first, distrusting a tool's output -> agent_safety. Examples: 'With shell and editor tools, give the ordered commands to make the build pass', 'Your deploy command just printed a permission error: what single command do you run next?', 'You renamed the column in two of three services: list what remains and in which order'. Also: choosing the right file and function to edit by quoting evidence from the given snippets, when a decoy file looks relevant, and describing the minimal edit.",
       "model": "tencent-hy4-preview",
       "verified": false
     },
     {
       "key": "agent_safety",
-      "label": "Agent — discipline / sûreté",
-      "description": "Sûreté et discipline d'un agent : rester dans le scope, s'arrêter au bon moment, refuser une action destructrice non demandée, détecter un outil qui ment, respecter le format de tool-call. Pas ici si on juge la qualité d'exécution fonctionnelle (→ agent_exec).",
+      "label": "Agent - discipline / safety",
+      "description": "The prompt places the model as an AGENT and asks for a JUDGMENT ON ITS OWN CONDUCT rather than on how to execute: is the task really done or not (do not declare success while a test still fails), stop at the right time, stay strictly in the requested scope (fix the bug, do not rename or refactor what was not asked), ask one clarifying question before acting on an underspecified task, refuse or confirm before a destructive or irreversible action, detect that a tool response is inconsistent or lying (wrong file, zero bytes, status ok but nothing done), respect the exact tool-call format. Choose this axis over debug or agent_exec whenever the core question is 'should I act, stop, ask, or trust this', or 'what must I deliberately not do'. Tie-breakers: the order and choice of tool calls to accomplish the task -> agent_exec. Examples: 'The linter still reports two errors after your change: can you close the ticket?', 'The upload tool returned success but the bucket listing is empty: what do you conclude?', 'User says clean up the server: what do you check or ask before deleting anything?'. Also: a task given with a destructive tool (delete, overwrite, send, pay, deploy) where some items are explicitly protected and the answer must limit the call to what is allowed and state what is not touched; a bug-fix task where others push for extra changes and the answer must keep the change minimal and say what was deliberately left alone.",
       "model": "tencent-hy3",
       "verified": false
     }
