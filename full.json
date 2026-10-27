@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-10-26",
+  "updated": "2026-10-27",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -16,21 +16,25 @@
     {
       "key": "creative",
       "label": "Créatif / rédaction longue",
-      "model": "kimi-k3",
+      "model": "glm-glm-5.3",
       "description": "Écriture d'invention : fiction, nouvelle, conte, poème, chanson, scénario, dialogue de personnages, jeu de rôle, pastiche, texte personnel (lettre intime, discours de mariage), réécriture stylistique d'un texte littéraire, et création publicitaire (slogans, accroches, concept et textes d'une campagne de publicité). Le critère : on invente une forme ou une idée. Pas ici si le texte informe ou rend compte pour une organisation (article, lettre d'information, page de présentation, communication interne, courrier, rapport), même sur un ton narratif (→ redac_pro) ; pas ici si le livrable est du code (→ axes code) ou une spécification (→ plan_spec).",
-      "verified": true,
       "bench": {
-        "score": 97.78,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
-      }
+      },
+      "verified": true
     },
     {
       "key": "redac_pro",
       "label": "Rédaction pro / business",
-      "model": "moonshotai-kimi-k3.1-pro",
+      "model": "stepfun-step-5-preview",
       "description": "Texte qui informe, explique ou rend compte pour une entreprise, une organisation ou un usage professionnel, quel que soit le ton : note de synthèse, rapport, recommandation, argumentaire, courriel ou courrier professionnel, compte rendu, communiqué, publication éditoriale d'une organisation (article, lettre d'information, page de présentation, histoire de l'entreprise racontée), fiche produit, présentation, document corporate, mise en forme publiable d'un document de travail. Aussi l'axe par défaut d'une demande d'écriture générale non technique. Pas ici si l'on invente une fiction, un texte personnel ou une création publicitaire (slogans, accroches, campagne) (→ creative), une spécification pour un exécutant (→ plan_spec), ou une analyse juridique (→ legal_rgpd / legal_complex).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -38,10 +42,12 @@
     {
       "key": "legal_rgpd",
       "label": "RGPD / conformité",
-      "model": "moonshotai-kimi-k3.1-pro",
+      "model": "stepfun-step-5-preview",
       "description": "Protection des données personnelles et vie privée (RGPD, ePrivacy, loi belge vie privée) : registre des traitements, base légale, analyse d'impact (AIPD/DPIA), contrat de sous-traitance (DPA, art. 28), mentions d'information, politique de confidentialité, cookies et consentement, droits des personnes, transferts hors UE, violation de données. Pas ici si la question juridique dépasse les données personnelles ou compare plusieurs droits (→ legal_complex).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -62,10 +68,12 @@
     {
       "key": "reasoning",
       "label": "Raisonnement / logique",
-      "model": "mimo-v2.6-pro",
+      "model": "qwen3.5-397",
       "description": "Raisonnement qualitatif ou logique sans calcul : déduction, logique formelle, démonstration, réfutation, énigme, paradoxe, argumentation, analyse critique d'une affirmation, explication conceptuelle, comparaison d'idées. Une démonstration ou un contre-exemple mathématique reste ici tant qu'il ne s'agit pas d'effectuer un calcul chiffré. Pas ici si la réponse exige de calculer des nombres ou de traiter des données (→ calc), si le livrable est du code (→ axes code), ou si c'est une question juridique (→ legal_*).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -73,9 +81,15 @@
     {
       "key": "calc",
       "label": "Calcul / structuré",
-      "model": "moonshotai-kimi-k3.1-pro",
+      "model": "ling-3.1-flash",
       "description": "Effectuer un calcul ou traiter des données chiffrées : arithmétique, pourcentages, intérêts, statistiques, conversions d'unités, estimations chiffrées, budget, tableur et formules, manipulation de tableaux ou de données structurées (CSV, JSON) sans écrire de programme. Pas ici si le raisonnement est logique ou qualitatif sans chiffres à calculer (→ reasoning), ni si l'on demande un script qui calcule (→ python ou axe du langage).",
-      "verified": false
+      "bench": {
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "python",
@@ -93,9 +107,15 @@
     {
       "key": "code_general",
       "label": "Code général",
-      "model": "qwen-qwen3.8-max-0902",
+      "model": "qwen3.8-max-prime",
       "description": "Écrire du code neuf dans un langage sans axe dédié : Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, JavaScript ou TypeScript côté serveur, SQL, shell scripts de plusieurs lignes, configuration d'infrastructure (Docker, CI). À choisir seulement si aucun axe plus précis ne s'applique. Pas ici si le langage est Swift (→ swift), Python (→ python) ou du front React (→ react) ; pas ici pour réparer (→ debug), restructurer (→ refactoring) ou faire une retouche d'une ligne (→ fast_tools).",
-      "verified": false
+      "bench": {
+        "score": 99.22,
+        "coverage": 1.0,
+        "n_tests": 10,
+        "source": "TMB"
+      },
+      "verified": true
     },
     {
       "key": "debug",
@@ -113,10 +133,12 @@
     {
       "key": "react",
       "label": "React / front",
-      "model": "glm-5.3-prime",
+      "model": "deepseek-v4-flash-0731",
       "description": "Front-end web : React, JSX/TSX, composants d'interface, hooks, état client, formulaires, routage côté client, Next.js, Tailwind/CSS, accessibilité d'une page, intégration d'une maquette. Pas ici si c'est du JavaScript/TypeScript côté serveur (→ code_general), une application native Apple (→ swift), ou un bug à réparer dans un composant existant (→ debug).",
       "bench": {
-        "score": 98,
+        "score": 98.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -124,34 +146,26 @@
     {
       "key": "swift",
       "label": "Swift",
-      "model": "kimi-k3",
+      "model": "moonshotai-kimi-k3",
       "description": "Tout ce qui concerne le code Swift et l'écosystème Apple : SwiftUI, UIKit, AppKit, application iOS/macOS/watchOS, Swift Package, Xcode, concurrence Swift (async/await, actors), Core Data, SwiftData, CLI Swift. Le langage prime : choisir cet axe même pour déboguer, restructurer ou retoucher du code Swift.",
-      "bench": {
-        "score": 99.0,
-        "coverage": 1.0,
-        "n_tests": 2,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "refactoring",
       "label": "Refactoring",
-      "model": "mistral-large-4-0",
+      "model": "tencent-hy3",
       "description": "Restructurer du code qui fonctionne SANS changer son comportement : extraire des fonctions ou des modules, découper un fichier, supprimer la duplication, renommer à l'échelle d'un module, moderniser une base de code vers une version plus récente du langage ou de ses outils, migrer vers une nouvelle API, réorganiser une arborescence ou une configuration éclatée, améliorer la lisibilité. Pas ici si l'on corrige un bug (→ debug), si l'on ajoute une fonctionnalité (→ axe du langage), si c'est du Swift (→ swift) ou une retouche d'une seule ligne (→ fast_tools).",
-      "bench": {
-        "score": 100,
-        "source": "TMB"
-      },
-      "verified": true
+      "verified": false
     },
     {
       "key": "plan_decompo",
       "label": "Planning — décomposition",
-      "model": "deepseek-v4.1-flash-1017",
+      "model": "stepfun-step-5-preview",
       "description": "Découper un objectif en étapes : plan de projet, liste de tâches, backlog, jalons, séquencement, répartition du travail, feuille de route. Le livrable est une liste ordonnée d'étapes. Pas ici si l'on rédige la spécification détaillée d'une étape pour un exécutant (→ plan_spec) ou si l'on juge les risques d'un plan (→ plan_judgment).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -159,10 +173,12 @@
     {
       "key": "plan_spec",
       "label": "Planning — handoff / spec",
-      "model": "moonshotai-kimi-k3.1-pro",
+      "model": "stepfun-step-5-preview",
       "description": "Rédiger une spécification destinée à un exécutant (humain ou agent) : cahier des charges, critères d'acceptation, handoff, document d'implémentation, contrat d'interface ou d'API, formats et flux d'échange de données entre logiciels ou systèmes, schéma de données. Pas ici si l'on découpe seulement en étapes (→ plan_decompo), si l'on juge un plan (→ plan_judgment), ou s'il s'agit d'un contrat juridique entre parties (→ legal_complex).",
       "bench": {
-        "score": 100,
+        "score": 100.0,
+        "coverage": 1.0,
+        "n_tests": 1,
         "source": "TMB"
       },
       "verified": true
@@ -207,29 +223,36 @@
       "key": "agent_exec",
       "label": "Agent — exécution outillée",
       "description": "Discipline d'exécution d'un agent outillé : bonne sélection et séquence de tools, reproduire avant de corriger, localiser par preuve, vérifier après action, cohérence multi-étapes. Pas ici si la tâche est du code pur hors boucle d'outils (→ axes code) ou du jugement de sûreté (→ agent_safety).",
-      "model": "mercury-3",
-      "bench": {
-        "score": 100,
-        "source": "TMB"
-      },
-      "verified": true
+      "model": "tencent-hy4-preview",
+      "verified": false
     },
     {
       "key": "agent_safety",
       "label": "Agent — discipline / sûreté",
       "description": "Sûreté et discipline d'un agent : rester dans le scope, s'arrêter au bon moment, refuser une action destructrice non demandée, détecter un outil qui ment, respecter le format de tool-call. Pas ici si on juge la qualité d'exécution fonctionnelle (→ agent_exec).",
-      "model": "hy3",
-      "verified": true,
-      "bench": {
-        "score": 100,
-        "source": "TMB"
-      }
+      "model": "tencent-hy3",
+      "verified": false
     }
   ],
   "models": {
+    "glm-glm-5.3": {
+      "name": "glm-glm-5.3",
+      "endpoint": "GLM-glm-5.3",
+      "kind": "cloud"
+    },
+    "stepfun-step-5-preview": {
+      "name": "stepfun-step-5-preview",
+      "or": "stepfun/step-5-preview",
+      "kind": "cloud"
+    },
     "ling-3.1-flash": {
       "name": "ling-3.1-flash",
       "or": "inclusionai/ling-3.1-flash",
+      "kind": "cloud"
+    },
+    "qwen3.5-397": {
+      "name": "qwen3.5-397",
+      "or": "qwen/qwen3.5-397b-a17b",
       "kind": "cloud"
     },
     "or-mimo-v2.6-pro": {
@@ -237,13 +260,18 @@
       "or": "xiaomi/mimo-v2.6-pro",
       "kind": "cloud"
     },
-    "kimi-k3": {
-      "name": "kimi-k3",
-      "or": "moonshotai/kimi-k3",
+    "qwen3.8-max-prime": {
+      "name": "qwen3.8-max-prime",
+      "or": "qwen/qwen3.8-max-prime",
+      "kind": "cloud"
+    },
+    "deepseek-v4-flash-0731": {
+      "name": "deepseek-v4-flash-0731",
+      "or": "deepseek/deepseek-v4-flash-0731",
       "kind": "cloud"
     },
     "deepseek-deepseek-v4.1-flash-1017": {
-      "name": "deepseek/deepseek-v4.1-flash-1017",
+      "name": "deepseek-v4.1-flash-1017",
       "or": "deepseek/deepseek-v4.1-flash-1017",
       "kind": "cloud"
     },
@@ -257,44 +285,19 @@
       "endpoint": "xiaomi/mimo-v2.6-flash",
       "provider": "openrouter"
     },
-    "mimo-v2.6-pro": {
-      "name": "mimo-v2.6-pro",
-      "or": "xiaomi/mimo-v2.6-pro",
+    "tencent-hy4-preview": {
+      "name": "tencent/hy4-preview",
+      "or": "tencent/hy4-preview",
       "kind": "cloud"
     },
-    "qwen-qwen3.8-max-0902": {
-      "name": "qwen/qwen3.8-max-0902",
-      "or": "qwen/qwen3.8-max-0902",
-      "kind": "cloud"
-    },
-    "mercury-3": {
-      "name": "mercury-3",
-      "or": "inception/mercury-3",
-      "kind": "cloud"
-    },
-    "moonshotai-kimi-k3.1-pro": {
-      "name": "moonshotai/kimi-k3.1-pro",
-      "or": "moonshotai/kimi-k3.1-pro",
-      "kind": "cloud"
-    },
-    "mistral-large-4-0": {
-      "name": "mistral-large-4-0",
-      "or": "mistralai/mistral-large-4-0",
-      "kind": "cloud"
-    },
-    "hy3": {
-      "name": "hy3",
+    "tencent-hy3": {
+      "name": "tencent/hy3",
       "or": "tencent/hy3",
       "kind": "cloud"
     },
-    "glm-5.3-prime": {
-      "name": "glm-5.3-prime",
-      "or": "z-ai/glm-5.3-prime",
-      "kind": "cloud"
-    },
-    "deepseek-v4.1-flash-1017": {
-      "name": "deepseek-v4.1-flash-1017",
-      "or": "deepseek/deepseek-v4.1-flash-1017",
+    "moonshotai-kimi-k3": {
+      "name": "moonshotai/kimi-k3",
+      "or": "moonshotai/kimi-k3",
       "kind": "cloud"
     }
   },
