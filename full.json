@@ -230,7 +230,8 @@
         "source": "TMB"
       },
       "verified": false,
-      "decider": true
+      "decider": true,
+      "thinking": false
     },
     {
       "key": "voice",
@@ -257,7 +258,8 @@
       "description": "The prompt places the model as an AGENT and asks for a JUDGMENT ON ITS OWN CONDUCT rather than on how to execute: is the task really done or not (do not declare success while a test still fails), stop at the right time, stay strictly in the requested scope (fix the bug, do not rename or refactor what was not asked), ask one clarifying question before acting on an underspecified task, refuse or confirm before a destructive or irreversible action, detect that a tool response is inconsistent or lying (wrong file, zero bytes, status ok but nothing done), respect the exact tool-call format. Choose this axis over debug or agent_exec whenever the core question is 'should I act, stop, ask, or trust this', or 'what must I deliberately not do'. Tie-breakers: the order and choice of tool calls to accomplish the task -> agent_exec. Examples: 'The linter still reports two errors after your change: can you close the ticket?', 'The upload tool returned success but the bucket listing is empty: what do you conclude?', 'User says clean up the server: what do you check or ask before deleting anything?'. Also: a task given with a destructive tool (delete, overwrite, send, pay, deploy) where some items are explicitly protected and the answer must limit the call to what is allowed and state what is not touched; a bug-fix task where others push for extra changes and the answer must keep the change minimal and say what was deliberately left alone.",
       "model": "tencent-hy3",
       "verified": false,
-      "decider": true
+      "decider": true,
+      "thinking": true
     }
   ],
   "models": {
