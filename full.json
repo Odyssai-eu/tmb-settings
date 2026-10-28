@@ -120,7 +120,7 @@
       },
       "verified": true,
       "key": "reasoning",
-      "model": "mimo-pro",
+      "model": "qwen-397b-a17b",
       "label": "Reasoning / logic",
       "description": "Qualitative or logical reasoning without computation: deduction, formal logic, proof, refutation, riddle, paradox, argumentation, critical analysis of a claim, conceptual explanation, comparison of ideas. A mathematical proof or counter-example stays here as long as no numeric calculation has to be carried out. Not here if the answer requires computing numbers or processing data (-> calc), if the deliverable is code (-> code axes), or if it is a legal question (-> legal_*).",
       "thinking": true
@@ -151,7 +151,7 @@
       "model": "mimo-pro",
       "label": "Python / scripts",
       "description": "The deliverable is new Python code: script, automation, data processing (pandas), notebook, Python API or backend, machine learning. Choose this axis as soon as the target language is Python and the task requires real code writing. Not here for a mechanical one-line edit (-> fast_tools), to fix a bug (-> debug), to restructure existing code without changing its behaviour (-> refactoring), nor for another language (-> code_general / swift / react).",
-      "thinking": false
+      "thinking": true
     },
     {
       "bench": {
@@ -310,6 +310,11 @@
     "ling-flash": {
       "name": "ling-3.1-flash-OR",
       "or": "inclusionai/ling-3.1-flash",
+      "kind": "cloud"
+    },
+    "qwen-397b-a17b": {
+      "name": "qwen3.5-397",
+      "or": "qwen/qwen3.5-397b-a17b",
       "kind": "cloud"
     },
     "mimo-pro": {
