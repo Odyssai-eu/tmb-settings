@@ -1,342 +1,24 @@
 {
+  "decider_model": null,
   "name": "setting",
   "updated": "2026-10-28",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
-  "decider": {
-    "name": "SubQ snap",
-    "provider": "subq",
-    "endpoint": "subq-snap-preview",
-    "kind": "systemone",
-    "criteria": "label+full",
-    "threshold": 0.5
-  },
-  "decider_model": null,
-  "axes": [
-    {
-      "key": "creative",
-      "label": "Creative / long-form writing",
-      "model": "kimi-k3",
-      "description": "Inventive writing: fiction, short story, tale, poem, song, screenplay, character dialogue, role-play, pastiche, personal text (private letter, wedding speech), stylistic rewriting of a literary text, and advertising creation (slogans, taglines, concept and copy for an ad campaign). The test: something is invented, a form or an idea. Not here if the text informs or reports on behalf of an organisation (article, newsletter, about page, internal communication, letter, report), even in a narrative tone (-> redac_pro); not here if the deliverable is code (-> code axes) or a specification (-> plan_spec).",
-      "bench": {
-        "score": 97.78,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "redac_pro",
-      "label": "Professional / business writing",
-      "model": "stepfun-step-5-preview",
-      "description": "Text that informs, explains or reports for a company, an organisation or a professional use, whatever the tone: briefing note, report, recommendation, sales pitch, professional email or letter, minutes, press release, an organisation's editorial content (article, newsletter, about page, company story), product sheet, presentation, corporate document, turning a working draft into a publishable document. Also the default axis for a general non-technical writing request. Not here if it invents fiction, a personal text or advertising creation (slogans, taglines, campaign) (-> creative), a specification for an implementer (-> plan_spec), or a legal analysis (-> legal_rgpd / legal_complex).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "legal_rgpd",
-      "label": "GDPR / data protection",
-      "model": "stepfun-step-5-preview",
-      "description": "Personal data protection and privacy (GDPR, ePrivacy, Belgian privacy law): records of processing, legal basis, data protection impact assessment (DPIA), processor agreement (DPA, art. 28), privacy notices, privacy policy, cookies and consent, data subject rights, transfers outside the EU, data breach. Not here if the legal question goes beyond personal data or compares several legal systems (-> legal_complex).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "legal_complex",
-      "label": "Multi-jurisdiction legal",
-      "model": "ling-3.1-flash",
-      "description": "Law other than personal data, or several jurisdictions: drafting and reviewing contracts (clauses, liability, non-compete), company law, employment, commercial, tax, criminal law, procedure, sector compliance, comparison of national laws (Belgium, France, Luxembourg...), nuanced legal reasoning, case law. Not here if it is strictly personal data / GDPR (-> legal_rgpd), nor if the subject is a technical exchange between software systems (formats, flows, interfaces) (-> plan_spec).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": false
-    },
-    {
-      "key": "reasoning",
-      "label": "Reasoning / logic",
-      "model": "qwen3.5-397",
-      "description": "Qualitative or logical reasoning without computation: deduction, formal logic, proof, refutation, riddle, paradox, argumentation, critical analysis of a claim, conceptual explanation, comparison of ideas. A mathematical proof or counter-example stays here as long as no numeric calculation has to be carried out. Not here if the answer requires computing numbers or processing data (-> calc), if the deliverable is code (-> code axes), or if it is a legal question (-> legal_*).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "calc",
-      "label": "Calculation / structured data",
-      "model": "ling-3.1-flash",
-      "description": "Carry out a calculation or process numeric data: arithmetic, percentages, interest, statistics, unit conversions, numeric estimates, budget, spreadsheet and formulas, handling tables or structured data (CSV, JSON) without writing a program. Not here if the reasoning is logical or qualitative with no numbers to compute (-> reasoning), nor if a script that computes is requested (-> python or the language axis).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": false
-    },
-    {
-      "key": "python",
-      "label": "Python / scripts",
-      "model": "or-mimo-v2.6-pro",
-      "description": "The deliverable is new Python code: script, automation, data processing (pandas), notebook, Python API or backend, machine learning. Choose this axis as soon as the target language is Python and the task requires real code writing. Not here for a mechanical one-line edit (-> fast_tools), to fix a bug (-> debug), to restructure existing code without changing its behaviour (-> refactoring), nor for another language (-> code_general / swift / react).",
-      "bench": {
-        "score": 99.25,
-        "coverage": 1.0,
-        "n_tests": 4,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": false
-    },
-    {
-      "key": "code_general",
-      "label": "General code",
-      "model": "qwen3.8-max-prime",
-      "description": "Write new code in a language without a dedicated axis: Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, server-side JavaScript or TypeScript, SQL, multi-line shell scripts, infrastructure configuration (Docker, CI). Choose only if no more specific axis applies. Not here if the language is Swift (-> swift), Python (-> python) or React front-end (-> react); not here to fix (-> debug), restructure (-> refactoring) or make a one-line edit (-> fast_tools).",
-      "bench": {
-        "score": 99.22,
-        "coverage": 1.0,
-        "n_tests": 10,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "debug",
-      "label": "Debug",
-      "model": "ling-3.1-flash",
-      "description": "Understand and fix a defect in existing code, in any language (except Swift): error message, stack trace, exception, unexpected behaviour, failing test, regression, memory leak, abnormal performance. The intent is to REPAIR or EXPLAIN a failure. Not here if the code is Swift (-> swift, the language wins), if new code is being written (-> language axis), or if the code works and should be restructured (-> refactoring). When the prompt places the model as an AGENT acting step by step in a session (tools listed, commands it ran and their output, 'your next action', 'are you done', what it should or should not touch), the request is about the agent's conduct -> agent_exec or agent_safety, even if a bug is involved.",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "react",
-      "label": "React / front-end",
-      "model": "deepseek-v4-pro",
-      "description": "Web front-end: React, JSX/TSX, UI components, hooks, client state, forms, client-side routing, Next.js, Tailwind/CSS, page accessibility, implementing a mockup. Not here if it is server-side JavaScript/TypeScript (-> code_general), a native Apple app (-> swift), or a bug to fix in an existing component (-> debug).",
-      "bench": {
-        "score": 98,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": false
-    },
-    {
-      "key": "swift",
-      "label": "Swift",
-      "model": "moonshotai-kimi-k3",
-      "description": "Everything about Swift code and the Apple ecosystem: SwiftUI, UIKit, AppKit, iOS/macOS/watchOS apps, Swift Package, Xcode, Swift concurrency (async/await, actors), Core Data, SwiftData, Swift CLI. The language wins: choose this axis even to debug, restructure or edit Swift code.",
-      "verified": false,
-      "decider": true,
-      "thinking": false
-    },
-    {
-      "key": "refactoring",
-      "label": "Refactoring",
-      "model": "tencent-hy3",
-      "description": "Restructure working code WITHOUT changing its behaviour: extract functions or modules, split a file, remove duplication, rename across a module, modernise a codebase to a newer language or tooling version, migrate to a new API, reorganise a tree or a scattered configuration, improve readability. Not here if a bug is being fixed (-> debug), a feature added (-> language axis), if it is Swift (-> swift) or a single-line edit (-> fast_tools).",
-      "verified": false,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "plan_decompo",
-      "label": "Planning - decomposition",
-      "model": "stepfun-step-5-preview",
-      "description": "Break a goal into steps: project plan, task list, backlog, milestones, sequencing, work split, roadmap. The deliverable is an ordered list of steps. Not here if the detailed specification of a step is written for an implementer (-> plan_spec) or if the risks of a plan are judged (-> plan_judgment).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "plan_spec",
-      "label": "Planning - handoff / spec",
-      "model": "stepfun-step-5-preview",
-      "description": "Write a specification for an implementer (human or agent): requirements document, acceptance criteria, handoff, implementation document, interface or API contract, data exchange formats and flows between software systems, data schema. Not here if the goal is only split into steps (-> plan_decompo), if a plan is judged (-> plan_judgment), or if it is a legal contract between parties (-> legal_complex).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "plan_judgment",
-      "label": "Planning - judgment / pitfalls",
-      "model": "deepseek-deepseek-v4.1-flash-1017",
-      "description": "Critically evaluate a plan, a decision or an architecture: spot pitfalls and blind spots, arbitrate between options, risk analysis, adversarial review (red team), pre-mortem, strategic advice on a choice. Not here if a goal is broken into steps (-> plan_decompo) or a specification is written (-> plan_spec).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 2,
-        "source": "TMB"
-      },
-      "verified": true,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "fast_tools",
-      "label": "Tools & fast coding",
-      "model": "mercury-2.5",
-      "description": "Small mechanical task to serve fast, with no thinking: local edit of one line or one identifier in a file, typo fix, changing a value, reordering or reformatting short content, simple format conversion, one-line shell command, direct tool call (list, read, write a file on explicit request). Choose this axis as soon as the request is one mechanical action, even on Python or code. Not here if the task requires designing, writing a lot of code or reasoning (-> the matching skill axis).",
-      "bench": {
-        "score": 100.0,
-        "coverage": 1.0,
-        "n_tests": 1,
-        "source": "TMB"
-      },
-      "verified": false,
-      "decider": true,
-      "thinking": false
-    },
-    {
-      "key": "voice",
-      "label": "Voice (spoken)",
-      "model": "xiaomi/mimo-v2.6-flash",
-      "description": "Voice mode turns: short spoken answer, two to four sentences, no markdown or lists. Fast model without reasoning.",
-      "decider": false,
-      "thinking": false,
-      "instruction": "Réponse destinée à être lue à voix haute : deux à quatre phrases courtes, sans markdown, sans liste, sans titre.",
-      "suggested": "qwen/qwen3-next-80b-a3b-instruct"
-    },
-    {
-      "key": "agent_exec",
-      "label": "Agent - tool-driven execution",
-      "description": "The prompt places the model as an AGENT working in a session (tools listed, commands it ran and their output, files it edited, steps already done) and asks HOW TO CARRY OUT the work: which tool calls in which order, reproduce before fixing, locate the cause by evidence (search, read) rather than guess, the single next command or edit after an error, verify after acting, keep a multi-step task consistent (detect that an earlier step was done wrong and repair it before continuing). The focus is effective execution of the task. Choose this axis over debug, python or refactoring whenever the request is about the agent's own sequence of actions rather than the code alone. Tie-breakers: whether to act at all, when to stop, whether the task is really done, staying in scope, refusing or asking first, distrusting a tool's output -> agent_safety. Examples: 'With shell and editor tools, give the ordered commands to make the build pass', 'Your deploy command just printed a permission error: what single command do you run next?', 'You renamed the column in two of three services: list what remains and in which order'. Also: choosing the right file and function to edit by quoting evidence from the given snippets, when a decoy file looks relevant, and describing the minimal edit.",
-      "model": "tencent-hy4-preview",
-      "verified": false,
-      "decider": true,
-      "thinking": true
-    },
-    {
-      "key": "agent_safety",
-      "label": "Agent - discipline / safety",
-      "description": "The prompt places the model as an AGENT and asks for a JUDGMENT ON ITS OWN CONDUCT rather than on how to execute: is the task really done or not (do not declare success while a test still fails), stop at the right time, stay strictly in the requested scope (fix the bug, do not rename or refactor what was not asked), ask one clarifying question before acting on an underspecified task, refuse or confirm before a destructive or irreversible action, detect that a tool response is inconsistent or lying (wrong file, zero bytes, status ok but nothing done), respect the exact tool-call format. Choose this axis over debug or agent_exec whenever the core question is 'should I act, stop, ask, or trust this', or 'what must I deliberately not do'. Tie-breakers: the order and choice of tool calls to accomplish the task -> agent_exec. Examples: 'The linter still reports two errors after your change: can you close the ticket?', 'The upload tool returned success but the bucket listing is empty: what do you conclude?', 'User says clean up the server: what do you check or ask before deleting anything?'. Also: a task given with a destructive tool (delete, overwrite, send, pay, deploy) where some items are explicitly protected and the answer must limit the call to what is allowed and state what is not touched; a bug-fix task where others push for extra changes and the answer must keep the change minimal and say what was deliberately left alone.",
-      "model": "tencent-hy3",
-      "verified": false,
-      "decider": true,
-      "thinking": false
-    }
-  ],
-  "models": {
-    "stepfun-step-5-preview": {
-      "name": "stepfun-step-5-preview",
-      "or": "stepfun/step-5-preview",
-      "kind": "cloud"
-    },
-    "ling-3.1-flash": {
-      "name": "ling-3.1-flash",
-      "or": "inclusionai/ling-3.1-flash",
-      "kind": "cloud"
-    },
-    "qwen3.5-397": {
-      "name": "qwen3.5-397",
-      "or": "qwen/qwen3.5-397b-a17b",
-      "kind": "cloud"
-    },
-    "or-mimo-v2.6-pro": {
-      "name": "mimo-v2.6-pro",
-      "or": "xiaomi/mimo-v2.6-pro",
-      "kind": "cloud"
-    },
-    "qwen3.8-max-prime": {
-      "name": "qwen3.8-max-prime",
-      "or": "qwen/qwen3.8-max-prime",
-      "kind": "cloud"
-    },
-    "deepseek-deepseek-v4.1-flash-1017": {
-      "name": "deepseek-v4.1-flash-1017",
-      "or": "deepseek/deepseek-v4.1-flash-1017",
-      "kind": "cloud"
-    },
-    "mercury-2.5": {
-      "name": "mercury-2.5",
-      "or": "inception/mercury-2.5",
-      "kind": "cloud"
-    },
-    "xiaomi/mimo-v2.6-flash": {
-      "name": "xiaomi/mimo-v2.6-flash",
-      "endpoint": "xiaomi/mimo-v2.6-flash",
-      "provider": "openrouter"
-    },
-    "tencent-hy4-preview": {
-      "name": "tencent/hy4-preview",
-      "or": "tencent/hy4-preview",
-      "kind": "cloud"
-    },
-    "tencent-hy3": {
-      "name": "tencent/hy3",
-      "or": "tencent/hy3",
-      "kind": "cloud"
-    },
-    "moonshotai-kimi-k3": {
-      "name": "moonshotai/kimi-k3",
-      "or": "moonshotai/kimi-k3",
-      "kind": "cloud"
-    },
-    "deepseek-v4-pro": {
-      "name": "deepseek-v4-pro",
-      "or": "deepseek/deepseek-v4-pro",
-      "kind": "cloud"
-    },
-    "kimi-k3": {
-      "name": "kimi-k3",
-      "or": "moonshotai/kimi-k3",
-      "kind": "cloud"
-    }
-  },
   "format": "coeos-settings/1",
   "enabled": true,
+  "decider": {
+    "criteria": "label+full",
+    "endpoint": "subq-snap-preview",
+    "kind": "systemone",
+    "name": "SubQ snap",
+    "provider": "subq",
+    "threshold": 0.5
+  },
   "live": {
+    "instruction": "Tu es Némo, l'assistant vocal de CoeOS. Tu réponds toi-même, directement, dans la langue de ton interlocuteur, en une à trois phrases, sans listes ni mise en forme. Si tu ne sais pas, tu le dis. Tu n'inventes pas de faits sur CoeOS ni sur l'utilisateur.",
     "model": "gemini-3.8-live",
+    "session_ttl_s": 60,
+    "token_ttl_s": 1800,
     "voice": "",
     "voices": [
       "Zephyr",
@@ -369,13 +51,329 @@
       "Sadachbia",
       "Sadaltager",
       "Sulafat"
-    ],
-    "instruction": "Tu es Némo, l'assistant vocal de CoeOS. Tu réponds toi-même, directement, dans la langue de ton interlocuteur, en une à trois phrases, sans listes ni mise en forme. Si tu ne sais pas, tu le dis. Tu n'inventes pas de faits sur CoeOS ni sur l'utilisateur.",
-    "token_ttl_s": 1800,
-    "session_ttl_s": 60
+    ]
   },
   "asr": {
-    "model": "voxtral-mini-latest",
-    "language": "fr"
+    "language": "fr",
+    "model": "voxtral-mini-latest"
+  },
+  "axes": [
+    {
+      "bench": {
+        "score": 97.78,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "creative",
+      "model": "kimi",
+      "label": "Creative / long-form writing",
+      "description": "Inventive writing: fiction, short story, tale, poem, song, screenplay, character dialogue, role-play, pastiche, personal text (private letter, wedding speech), stylistic rewriting of a literary text, and advertising creation (slogans, taglines, concept and copy for an ad campaign). The test: something is invented, a form or an idea. Not here if the text informs or reports on behalf of an organisation (article, newsletter, about page, internal communication, letter, report), even in a narrative tone (-> redac_pro); not here if the deliverable is code (-> code axes) or a specification (-> plan_spec).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "redac_pro",
+      "model": "step",
+      "label": "Professional / business writing",
+      "description": "Text that informs, explains or reports for a company, an organisation or a professional use, whatever the tone: briefing note, report, recommendation, sales pitch, professional email or letter, minutes, press release, an organisation's editorial content (article, newsletter, about page, company story), product sheet, presentation, corporate document, turning a working draft into a publishable document. Also the default axis for a general non-technical writing request. Not here if it invents fiction, a personal text or advertising creation (slogans, taglines, campaign) (-> creative), a specification for an implementer (-> plan_spec), or a legal analysis (-> legal_rgpd / legal_complex).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB v2 · juge : opus-4.8"
+      },
+      "verified": true,
+      "key": "legal_rgpd",
+      "model": "glm-flash",
+      "label": "GDPR / data protection",
+      "description": "Personal data protection and privacy (GDPR, ePrivacy, Belgian privacy law): records of processing, legal basis, data protection impact assessment (DPIA), processor agreement (DPA, art. 28), privacy notices, privacy policy, cookies and consent, data subject rights, transfers outside the EU, data breach. Not here if the legal question goes beyond personal data or compares several legal systems (-> legal_complex).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "legal_complex",
+      "model": "ling-flash",
+      "label": "Multi-jurisdiction legal",
+      "description": "Law other than personal data, or several jurisdictions: drafting and reviewing contracts (clauses, liability, non-compete), company law, employment, commercial, tax, criminal law, procedure, sector compliance, comparison of national laws (Belgium, France, Luxembourg...), nuanced legal reasoning, case law. Not here if it is strictly personal data / GDPR (-> legal_rgpd), nor if the subject is a technical exchange between software systems (formats, flows, interfaces) (-> plan_spec).",
+      "decider": true,
+      "thinking": false
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "reasoning",
+      "model": "qwen-397b-a17b",
+      "label": "Reasoning / logic",
+      "description": "Qualitative or logical reasoning without computation: deduction, formal logic, proof, refutation, riddle, paradox, argumentation, critical analysis of a claim, conceptual explanation, comparison of ideas. A mathematical proof or counter-example stays here as long as no numeric calculation has to be carried out. Not here if the answer requires computing numbers or processing data (-> calc), if the deliverable is code (-> code axes), or if it is a legal question (-> legal_*).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "calc",
+      "model": "ling-flash",
+      "label": "Calculation / structured data",
+      "description": "Carry out a calculation or process numeric data: arithmetic, percentages, interest, statistics, unit conversions, numeric estimates, budget, spreadsheet and formulas, handling tables or structured data (CSV, JSON) without writing a program. Not here if the reasoning is logical or qualitative with no numbers to compute (-> reasoning), nor if a script that computes is requested (-> python or the language axis).",
+      "decider": true,
+      "thinking": false
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 4,
+        "score": 99.25,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "python",
+      "model": "mimo-pro",
+      "label": "Python / scripts",
+      "description": "The deliverable is new Python code: script, automation, data processing (pandas), notebook, Python API or backend, machine learning. Choose this axis as soon as the target language is Python and the task requires real code writing. Not here for a mechanical one-line edit (-> fast_tools), to fix a bug (-> debug), to restructure existing code without changing its behaviour (-> refactoring), nor for another language (-> code_general / swift / react).",
+      "decider": true,
+      "thinking": false
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 10,
+        "score": 99.22,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "code_general",
+      "model": "qwen-max-prime",
+      "label": "General code",
+      "description": "Write new code in a language without a dedicated axis: Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, server-side JavaScript or TypeScript, SQL, multi-line shell scripts, infrastructure configuration (Docker, CI). Choose only if no more specific axis applies. Not here if the language is Swift (-> swift), Python (-> python) or React front-end (-> react); not here to fix (-> debug), restructure (-> refactoring) or make a one-line edit (-> fast_tools).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "debug",
+      "model": "ling-flash",
+      "label": "Debug",
+      "description": "Understand and fix a defect in existing code, in any language (except Swift): error message, stack trace, exception, unexpected behaviour, failing test, regression, memory leak, abnormal performance. The intent is to REPAIR or EXPLAIN a failure. Not here if the code is Swift (-> swift, the language wins), if new code is being written (-> language axis), or if the code works and should be restructured (-> refactoring). When the prompt places the model as an AGENT acting step by step in a session (tools listed, commands it ran and their output, 'your next action', 'are you done', what it should or should not touch), the request is about the agent's conduct -> agent_exec or agent_safety, even if a bug is involved.",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "score": 98,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "react",
+      "model": "deepseek-pro",
+      "label": "React / front-end",
+      "description": "Web front-end: React, JSX/TSX, UI components, hooks, client state, forms, client-side routing, Next.js, Tailwind/CSS, page accessibility, implementing a mockup. Not here if it is server-side JavaScript/TypeScript (-> code_general), a native Apple app (-> swift), or a bug to fix in an existing component (-> debug).",
+      "decider": true,
+      "thinking": false
+    },
+    {
+      "verified": false,
+      "key": "swift",
+      "model": "kimi",
+      "label": "Swift",
+      "description": "Everything about Swift code and the Apple ecosystem: SwiftUI, UIKit, AppKit, iOS/macOS/watchOS apps, Swift Package, Xcode, Swift concurrency (async/await, actors), Core Data, SwiftData, Swift CLI. The language wins: choose this axis even to debug, restructure or edit Swift code.",
+      "decider": true,
+      "thinking": false
+    },
+    {
+      "verified": false,
+      "key": "refactoring",
+      "model": "hy-2",
+      "label": "Refactoring",
+      "description": "Restructure working code WITHOUT changing its behaviour: extract functions or modules, split a file, remove duplication, rename across a module, modernise a codebase to a newer language or tooling version, migrate to a new API, reorganise a tree or a scattered configuration, improve readability. Not here if a bug is being fixed (-> debug), a feature added (-> language axis), if it is Swift (-> swift) or a single-line edit (-> fast_tools).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "plan_decompo",
+      "model": "step",
+      "label": "Planning - decomposition",
+      "description": "Break a goal into steps: project plan, task list, backlog, milestones, sequencing, work split, roadmap. The deliverable is an ordered list of steps. Not here if the detailed specification of a step is written for an implementer (-> plan_spec) or if the risks of a plan are judged (-> plan_judgment).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "plan_spec",
+      "model": "step",
+      "label": "Planning - handoff / spec",
+      "description": "Write a specification for an implementer (human or agent): requirements document, acceptance criteria, handoff, implementation document, interface or API contract, data exchange formats and flows between software systems, data schema. Not here if the goal is only split into steps (-> plan_decompo), if a plan is judged (-> plan_judgment), or if it is a legal contract between parties (-> legal_complex).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 2,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": true,
+      "key": "plan_judgment",
+      "model": "deepseek-flash",
+      "label": "Planning - judgment / pitfalls",
+      "description": "Critically evaluate a plan, a decision or an architecture: spot pitfalls and blind spots, arbitrate between options, risk analysis, adversarial review (red team), pre-mortem, strategic advice on a choice. Not here if a goal is broken into steps (-> plan_decompo) or a specification is written (-> plan_spec).",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "bench": {
+        "coverage": 1.0,
+        "n_tests": 1,
+        "score": 100.0,
+        "source": "TMB"
+      },
+      "verified": false,
+      "key": "fast_tools",
+      "model": "mercury-2",
+      "label": "Tools & fast coding",
+      "description": "Small mechanical task to serve fast, with no thinking: local edit of one line or one identifier in a file, typo fix, changing a value, reordering or reformatting short content, simple format conversion, one-line shell command, direct tool call (list, read, write a file on explicit request). Choose this axis as soon as the request is one mechanical action, even on Python or code. Not here if the task requires designing, writing a lot of code or reasoning (-> the matching skill axis).",
+      "decider": true,
+      "thinking": false
+    },
+    {
+      "key": "voice",
+      "model": "mimo-flash",
+      "label": "Voice (spoken)",
+      "description": "Voice mode turns: short spoken answer, two to four sentences, no markdown or lists. Fast model without reasoning.",
+      "instruction": "Réponse destinée à être lue à voix haute : deux à quatre phrases courtes, sans markdown, sans liste, sans titre.",
+      "decider": false,
+      "thinking": false
+    },
+    {
+      "verified": false,
+      "key": "agent_exec",
+      "model": "hy",
+      "label": "Agent - tool-driven execution",
+      "description": "The prompt places the model as an AGENT working in a session (tools listed, commands it ran and their output, files it edited, steps already done) and asks HOW TO CARRY OUT the work: which tool calls in which order, reproduce before fixing, locate the cause by evidence (search, read) rather than guess, the single next command or edit after an error, verify after acting, keep a multi-step task consistent (detect that an earlier step was done wrong and repair it before continuing). The focus is effective execution of the task. Choose this axis over debug, python or refactoring whenever the request is about the agent's own sequence of actions rather than the code alone. Tie-breakers: whether to act at all, when to stop, whether the task is really done, staying in scope, refusing or asking first, distrusting a tool's output -> agent_safety. Examples: 'With shell and editor tools, give the ordered commands to make the build pass', 'Your deploy command just printed a permission error: what single command do you run next?', 'You renamed the column in two of three services: list what remains and in which order'. Also: choosing the right file and function to edit by quoting evidence from the given snippets, when a decoy file looks relevant, and describing the minimal edit.",
+      "decider": true,
+      "thinking": true
+    },
+    {
+      "verified": false,
+      "key": "agent_safety",
+      "model": "hy-2",
+      "label": "Agent - discipline / safety",
+      "description": "The prompt places the model as an AGENT and asks for a JUDGMENT ON ITS OWN CONDUCT rather than on how to execute: is the task really done or not (do not declare success while a test still fails), stop at the right time, stay strictly in the requested scope (fix the bug, do not rename or refactor what was not asked), ask one clarifying question before acting on an underspecified task, refuse or confirm before a destructive or irreversible action, detect that a tool response is inconsistent or lying (wrong file, zero bytes, status ok but nothing done), respect the exact tool-call format. Choose this axis over debug or agent_exec whenever the core question is 'should I act, stop, ask, or trust this', or 'what must I deliberately not do'. Tie-breakers: the order and choice of tool calls to accomplish the task -> agent_exec. Examples: 'The linter still reports two errors after your change: can you close the ticket?', 'The upload tool returned success but the bucket listing is empty: what do you conclude?', 'User says clean up the server: what do you check or ask before deleting anything?'. Also: a task given with a destructive tool (delete, overwrite, send, pay, deploy) where some items are explicitly protected and the answer must limit the call to what is allowed and state what is not touched; a bug-fix task where others push for extra changes and the answer must keep the change minimal and say what was deliberately left alone.",
+      "decider": true,
+      "thinking": false
+    }
+  ],
+  "models": {
+    "kimi": {
+      "name": "Kimi-K3-OR",
+      "or": "moonshotai/kimi-k3",
+      "kind": "cloud"
+    },
+    "step": {
+      "name": "stepfun-step-5-preview",
+      "or": "stepfun/step-5-preview",
+      "kind": "cloud"
+    },
+    "glm-flash": {
+      "name": "GLM-5.3-flash-OR",
+      "or": "z-ai/glm-5.3-flash",
+      "kind": "cloud"
+    },
+    "ling-flash": {
+      "name": "ling-3.1-flash-OR",
+      "or": "inclusionai/ling-3.1-flash",
+      "kind": "cloud"
+    },
+    "qwen-397b-a17b": {
+      "name": "qwen3.5-397",
+      "or": "qwen/qwen3.5-397b-a17b",
+      "kind": "cloud"
+    },
+    "mimo-pro": {
+      "name": "mimo-v2.6-pro-OR",
+      "or": "xiaomi/mimo-v2.6-pro",
+      "kind": "cloud"
+    },
+    "qwen-max-prime": {
+      "name": "qwen3.8-max-prime-OR",
+      "or": "qwen/qwen3.8-max-prime",
+      "kind": "cloud"
+    },
+    "deepseek-pro": {
+      "name": "deepseek-v4-pro",
+      "or": "deepseek/deepseek-v4-pro",
+      "kind": "cloud"
+    },
+    "hy-2": {
+      "name": "tencent/hy3",
+      "or": "tencent/hy3",
+      "kind": "cloud"
+    },
+    "deepseek-flash": {
+      "name": "deepseek/deepseek-v4.1-flash-1017",
+      "or": "deepseek/deepseek-v4.1-flash-1017",
+      "kind": "cloud"
+    },
+    "mercury-2": {
+      "name": "mercury-2.5",
+      "or": "inception/mercury-2.5",
+      "kind": "cloud"
+    },
+    "mimo-flash": {
+      "name": "mimo-v2.6-flash-or",
+      "or": "xiaomi/mimo-v2.6-flash",
+      "kind": "cloud"
+    },
+    "hy": {
+      "name": "Hy4-xh-or",
+      "or": "tencent/hy4-preview",
+      "kind": "cloud"
+    }
   }
 }
