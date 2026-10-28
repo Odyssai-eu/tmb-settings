@@ -1,6 +1,6 @@
 {
   "name": "setting",
-  "updated": "2026-10-27",
+  "updated": "2026-10-28",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "decider": {
@@ -23,7 +23,8 @@
         "source": "TMB"
       },
       "verified": true,
-      "decider": true
+      "decider": true,
+      "thinking": true
     },
     {
       "key": "redac_pro",
@@ -68,7 +69,7 @@
       },
       "verified": true,
       "decider": true,
-      "thinking": true
+      "thinking": false
     },
     {
       "key": "reasoning",
@@ -98,7 +99,7 @@
       },
       "verified": true,
       "decider": true,
-      "thinking": true
+      "thinking": false
     },
     {
       "key": "python",
@@ -113,7 +114,7 @@
       },
       "verified": true,
       "decider": true,
-      "thinking": true
+      "thinking": false
     },
     {
       "key": "code_general",
@@ -156,7 +157,7 @@
       },
       "verified": true,
       "decider": true,
-      "thinking": true
+      "thinking": false
     },
     {
       "key": "swift",
@@ -165,7 +166,7 @@
       "description": "Everything about Swift code and the Apple ecosystem: SwiftUI, UIKit, AppKit, iOS/macOS/watchOS apps, Swift Package, Xcode, Swift concurrency (async/await, actors), Core Data, SwiftData, Swift CLI. The language wins: choose this axis even to debug, restructure or edit Swift code.",
       "verified": false,
       "decider": true,
-      "thinking": true
+      "thinking": false
     },
     {
       "key": "refactoring",
@@ -262,7 +263,7 @@
       "model": "tencent-hy3",
       "verified": false,
       "decider": true,
-      "thinking": true
+      "thinking": false
     }
   ],
   "models": {
