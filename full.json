@@ -1,7 +1,7 @@
 {
   "decider_model": null,
   "name": "setting",
-  "updated": "2026-10-28",
+  "updated": "2026-11-01",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "format": "coeos-settings/1",
@@ -55,7 +55,8 @@
   },
   "asr": {
     "language": "fr",
-    "model": "voxtral-mini-latest"
+    "model": "voxtral-mini-latest",
+    "provider": "mistral"
   },
   "axes": [
     {
@@ -277,7 +278,7 @@
     {
       "verified": false,
       "key": "agent_exec",
-      "model": "hy",
+      "model": "glm-flash",
       "label": "Agent - tool-driven execution",
       "description": "The prompt places the model as an AGENT working in a session (tools listed, commands it ran and their output, files it edited, steps already done) and asks HOW TO CARRY OUT the work: which tool calls in which order, reproduce before fixing, locate the cause by evidence (search, read) rather than guess, the single next command or edit after an error, verify after acting, keep a multi-step task consistent (detect that an earlier step was done wrong and repair it before continuing). The focus is effective execution of the task. Choose this axis over debug, python or refactoring whenever the request is about the agent's own sequence of actions rather than the code alone. Tie-breakers: whether to act at all, when to stop, whether the task is really done, staying in scope, refusing or asking first, distrusting a tool's output -> agent_safety. Examples: 'With shell and editor tools, give the ordered commands to make the build pass', 'Your deploy command just printed a permission error: what single command do you run next?', 'You renamed the column in two of three services: list what remains and in which order'. Also: choosing the right file and function to edit by quoting evidence from the given snippets, when a decoy file looks relevant, and describing the minimal edit.",
       "thinking": true
@@ -350,11 +351,6 @@
     "mimo-flash": {
       "name": "mimo-v2.6-flash-or",
       "or": "xiaomi/mimo-v2.6-flash",
-      "kind": "cloud"
-    },
-    "hy": {
-      "name": "Hy4-xh-or",
-      "or": "tencent/hy4-preview",
       "kind": "cloud"
     }
   }
