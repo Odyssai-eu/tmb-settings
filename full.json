@@ -1,14 +1,14 @@
 {
   "decider_model": null,
   "name": "setting",
-  "updated": "2026-11-01",
+  "updated": "2026-11-02",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "format": "coeos-settings/1",
   "enabled": true,
   "decider": {
     "criteria": "label+full",
-    "endpoint": "subq-snap-preview",
+    "endpoint": "subq-snap-1.1",
     "kind": "systemone",
     "name": "SubQ snap",
     "provider": "subq",
