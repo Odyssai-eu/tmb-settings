@@ -66,7 +66,7 @@
       },
       "verified": true,
       "key": "creative",
-      "model": "kimi",
+      "model": "ling-flash",
       "label": "Creative / long-form writing",
       "description": "Inventive writing: fiction, short story, tale, poem, song, screenplay, character dialogue, role-play, pastiche, personal text (private letter, wedding speech), stylistic rewriting of a literary text, and advertising creation (slogans, taglines, concept and copy for an ad campaign). The test: something is invented, a form or an idea. Not here if the text informs or reports on behalf of an organisation (article, newsletter, about page, internal communication, letter, report), even in a narrative tone (-> redac_pro); not here if the deliverable is code (-> code axes) or a specification (-> plan_spec).",
       "thinking": true
@@ -80,7 +80,7 @@
       },
       "verified": true,
       "key": "redac_pro",
-      "model": "step",
+      "model": "deepseek-flash",
       "label": "Professional / business writing",
       "description": "Text that informs, explains or reports for a company, an organisation or a professional use, whatever the tone: briefing note, report, recommendation, sales pitch, professional email or letter, minutes, press release, an organisation's editorial content (article, newsletter, about page, company story), product sheet, presentation, corporate document, turning a working draft into a publishable document. Also the default axis for a general non-technical writing request. Not here if it invents fiction, a personal text or advertising creation (slogans, taglines, campaign) (-> creative), a specification for an implementer (-> plan_spec), or a legal analysis (-> legal_rgpd / legal_complex).",
       "thinking": true
@@ -121,7 +121,7 @@
       },
       "verified": true,
       "key": "reasoning",
-      "model": "qwen-397b-a17b",
+      "model": "mimo-pro",
       "label": "Reasoning / logic",
       "description": "Qualitative or logical reasoning without computation: deduction, formal logic, proof, refutation, riddle, paradox, argumentation, critical analysis of a claim, conceptual explanation, comparison of ideas. A mathematical proof or counter-example stays here as long as no numeric calculation has to be carried out. Not here if the answer requires computing numbers or processing data (-> calc), if the deliverable is code (-> code axes), or if it is a legal question (-> legal_*).",
       "thinking": true
@@ -197,7 +197,7 @@
     {
       "verified": false,
       "key": "swift",
-      "model": "kimi",
+      "model": "deepseek-flash",
       "label": "Swift",
       "description": "Everything about Swift code and the Apple ecosystem: SwiftUI, UIKit, AppKit, iOS/macOS/watchOS apps, Swift Package, Xcode, Swift concurrency (async/await, actors), Core Data, SwiftData, Swift CLI. The language wins: choose this axis even to debug, restructure or edit Swift code.",
       "thinking": false
@@ -219,7 +219,7 @@
       },
       "verified": true,
       "key": "plan_decompo",
-      "model": "step",
+      "model": "hy",
       "label": "Planning - decomposition",
       "description": "Break a goal into steps: project plan, task list, backlog, milestones, sequencing, work split, roadmap. The deliverable is an ordered list of steps. Not here if the detailed specification of a step is written for an implementer (-> plan_spec) or if the risks of a plan are judged (-> plan_judgment).",
       "thinking": true
@@ -233,7 +233,7 @@
       },
       "verified": true,
       "key": "plan_spec",
-      "model": "step",
+      "model": "glm-flash",
       "label": "Planning - handoff / spec",
       "description": "Write a specification for an implementer (human or agent): requirements document, acceptance criteria, handoff, implementation document, interface or API contract, data exchange formats and flows between software systems, data schema. Not here if the goal is only split into steps (-> plan_decompo), if a plan is judged (-> plan_judgment), or if it is a legal contract between parties (-> legal_complex).",
       "thinking": true
@@ -293,29 +293,19 @@
     }
   ],
   "models": {
-    "kimi": {
-      "name": "Kimi-K3-OR",
-      "or": "moonshotai/kimi-k3",
-      "kind": "cloud"
-    },
-    "step": {
-      "name": "stepfun-step-5-preview",
-      "or": "stepfun/step-5-preview",
-      "kind": "cloud"
-    },
-    "glm-flash": {
-      "name": "GLM-5.3-flash-OR",
-      "or": "z-ai/glm-5.3-flash",
-      "kind": "cloud"
-    },
     "ling-flash": {
       "name": "ling-3.1-flash-OR",
       "or": "inclusionai/ling-3.1-flash",
       "kind": "cloud"
     },
-    "qwen-397b-a17b": {
-      "name": "qwen3.5-397",
-      "or": "qwen/qwen3.5-397b-a17b",
+    "deepseek-flash": {
+      "name": "deepseek/deepseek-v4.1-flash-1017",
+      "or": "deepseek/deepseek-v4.1-flash-1017",
+      "kind": "cloud"
+    },
+    "glm-flash": {
+      "name": "GLM-5.3-flash-OR",
+      "or": "z-ai/glm-5.3-flash",
       "kind": "cloud"
     },
     "mimo-pro": {
@@ -333,9 +323,9 @@
       "or": "tencent/hy3",
       "kind": "cloud"
     },
-    "deepseek-flash": {
-      "name": "deepseek/deepseek-v4.1-flash-1017",
-      "or": "deepseek/deepseek-v4.1-flash-1017",
+    "hy": {
+      "name": "Hy4-xh-or",
+      "or": "tencent/hy4-preview",
       "kind": "cloud"
     },
     "mercury-2": {
