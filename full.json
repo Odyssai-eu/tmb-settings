@@ -1,7 +1,7 @@
 {
   "decider_model": null,
   "name": "setting",
-  "updated": "2026-11-02",
+  "updated": "2026-11-07",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "format": "coeos-settings/1",
@@ -163,7 +163,7 @@
       },
       "verified": true,
       "key": "code_general",
-      "model": "qwen-max-prime",
+      "model": "mimo-pro",
       "label": "General code",
       "description": "Write new code in a language without a dedicated axis: Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, server-side JavaScript or TypeScript, SQL, multi-line shell scripts, infrastructure configuration (Docker, CI). Choose only if no more specific axis applies. Not here if the language is Swift (-> swift), Python (-> python) or React front-end (-> react); not here to fix (-> debug), restructure (-> refactoring) or make a one-line edit (-> fast_tools).",
       "thinking": true
@@ -321,11 +321,6 @@
     "mimo-pro": {
       "name": "mimo-v2.6-pro-OR",
       "or": "xiaomi/mimo-v2.6-pro",
-      "kind": "cloud"
-    },
-    "qwen-max-prime": {
-      "name": "qwen3.8-max-prime-OR",
-      "or": "qwen/qwen3.8-max-prime",
       "kind": "cloud"
     },
     "deepseek-pro": {
