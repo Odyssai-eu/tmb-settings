@@ -1,7 +1,7 @@
 {
   "decider_model": null,
   "name": "setting",
-  "updated": "2026-11-07",
+  "updated": "2026-11-17",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "format": "coeos-settings/1",
@@ -66,7 +66,7 @@
       },
       "verified": true,
       "key": "creative",
-      "model": "ling-flash",
+      "model": "qwen4-max",
       "label": "Creative / long-form writing",
       "description": "Inventive writing: fiction, short story, tale, poem, song, screenplay, character dialogue, role-play, pastiche, personal text (private letter, wedding speech), stylistic rewriting of a literary text, and advertising creation (slogans, taglines, concept and copy for an ad campaign). The test: something is invented, a form or an idea. Not here if the text informs or reports on behalf of an organisation (article, newsletter, about page, internal communication, letter, report), even in a narrative tone (-> redac_pro); not here if the deliverable is code (-> code axes) or a specification (-> plan_spec).",
       "thinking": true
@@ -107,7 +107,7 @@
       },
       "verified": true,
       "key": "legal_complex",
-      "model": "ling-flash",
+      "model": "mimo-pro",
       "label": "Multi-jurisdiction legal",
       "description": "Law other than personal data, or several jurisdictions: drafting and reviewing contracts (clauses, liability, non-compete), company law, employment, commercial, tax, criminal law, procedure, sector compliance, comparison of national laws (Belgium, France, Luxembourg...), nuanced legal reasoning, case law. Not here if it is strictly personal data / GDPR (-> legal_rgpd), nor if the subject is a technical exchange between software systems (formats, flows, interfaces) (-> plan_spec).",
       "thinking": false
@@ -135,7 +135,7 @@
       },
       "verified": true,
       "key": "calc",
-      "model": "ling-flash",
+      "model": "qwen4-max",
       "label": "Calculation / structured data",
       "description": "Carry out a calculation or process numeric data: arithmetic, percentages, interest, statistics, unit conversions, numeric estimates, budget, spreadsheet and formulas, handling tables or structured data (CSV, JSON) without writing a program. Not here if the reasoning is logical or qualitative with no numbers to compute (-> reasoning), nor if a script that computes is requested (-> python or the language axis).",
       "thinking": false
@@ -149,7 +149,7 @@
       },
       "verified": true,
       "key": "python",
-      "model": "mimo-pro",
+      "model": "qwen4-max",
       "label": "Python / scripts",
       "description": "The deliverable is new Python code: script, automation, data processing (pandas), notebook, Python API or backend, machine learning. Choose this axis as soon as the target language is Python and the task requires real code writing. Not here for a mechanical one-line edit (-> fast_tools), to fix a bug (-> debug), to restructure existing code without changing its behaviour (-> refactoring), nor for another language (-> code_general / swift / react).",
       "thinking": true
@@ -163,7 +163,7 @@
       },
       "verified": true,
       "key": "code_general",
-      "model": "mimo-pro",
+      "model": "qwen4-max",
       "label": "General code",
       "description": "Write new code in a language without a dedicated axis: Go, Rust, Java, Kotlin, C, C++, C#, PHP, Ruby, server-side JavaScript or TypeScript, SQL, multi-line shell scripts, infrastructure configuration (Docker, CI). Choose only if no more specific axis applies. Not here if the language is Swift (-> swift), Python (-> python) or React front-end (-> react); not here to fix (-> debug), restructure (-> refactoring) or make a one-line edit (-> fast_tools).",
       "thinking": true
@@ -197,7 +197,7 @@
     {
       "verified": false,
       "key": "swift",
-      "model": "deepseek-flash",
+      "model": "qwen4-max",
       "label": "Swift",
       "description": "Everything about Swift code and the Apple ecosystem: SwiftUI, UIKit, AppKit, iOS/macOS/watchOS apps, Swift Package, Xcode, Swift concurrency (async/await, actors), Core Data, SwiftData, Swift CLI. The language wins: choose this axis even to debug, restructure or edit Swift code.",
       "thinking": false
@@ -205,7 +205,7 @@
     {
       "verified": false,
       "key": "refactoring",
-      "model": "hy-2",
+      "model": "minimax",
       "label": "Refactoring",
       "description": "Restructure working code WITHOUT changing its behaviour: extract functions or modules, split a file, remove duplication, rename across a module, modernise a codebase to a newer language or tooling version, migrate to a new API, reorganise a tree or a scattered configuration, improve readability. Not here if a bug is being fixed (-> debug), a feature added (-> language axis), if it is Swift (-> swift) or a single-line edit (-> fast_tools).",
       "thinking": true
@@ -219,7 +219,7 @@
       },
       "verified": true,
       "key": "plan_decompo",
-      "model": "hy",
+      "model": "glm-flash",
       "label": "Planning - decomposition",
       "description": "Break a goal into steps: project plan, task list, backlog, milestones, sequencing, work split, roadmap. The deliverable is an ordered list of steps. Not here if the detailed specification of a step is written for an implementer (-> plan_spec) or if the risks of a plan are judged (-> plan_judgment).",
       "thinking": true
@@ -261,7 +261,7 @@
       },
       "verified": false,
       "key": "fast_tools",
-      "model": "mercury-2",
+      "model": "hy-2",
       "label": "Tools & fast coding",
       "description": "Small mechanical task to serve fast, with no thinking: local edit of one line or one identifier in a file, typo fix, changing a value, reordering or reformatting short content, simple format conversion, one-line shell command, direct tool call (list, read, write a file on explicit request). Choose this axis as soon as the request is one mechanical action, even on Python or code. Not here if the task requires designing, writing a lot of code or reasoning (-> the matching skill axis).",
       "thinking": false
@@ -293,9 +293,9 @@
     }
   ],
   "models": {
-    "ling-flash": {
-      "name": "ling-3.1-flash-OR",
-      "or": "inclusionai/ling-3.1-flash",
+    "qwen4-max": {
+      "name": "Qwen4-max OR",
+      "or": "qwen/qwen4-max",
       "kind": "cloud"
     },
     "deepseek-flash": {
@@ -313,24 +313,24 @@
       "or": "xiaomi/mimo-v2.6-pro",
       "kind": "cloud"
     },
+    "ling-flash": {
+      "name": "ling-3.1-flash-OR",
+      "or": "inclusionai/ling-3.1-flash",
+      "kind": "cloud"
+    },
     "deepseek-pro": {
       "name": "deepseek-v4-pro",
       "or": "deepseek/deepseek-v4-pro",
       "kind": "cloud"
     },
+    "minimax": {
+      "name": "minimax3 OR",
+      "or": "minimax/minimax-m3",
+      "kind": "cloud"
+    },
     "hy-2": {
       "name": "tencent/hy3",
       "or": "tencent/hy3",
-      "kind": "cloud"
-    },
-    "hy": {
-      "name": "Hy4-xh-or",
-      "or": "tencent/hy4-preview",
-      "kind": "cloud"
-    },
-    "mercury-2": {
-      "name": "mercury-2.5",
-      "or": "inception/mercury-2.5",
       "kind": "cloud"
     },
     "mimo-flash": {
