@@ -8,7 +8,7 @@
   "enabled": true,
   "decider": {
     "criteria": "label+full",
-    "endpoint": "subq-snap-1.1",
+    "endpoint": "subq-snap-latest",
     "kind": "systemone",
     "name": "SubQ snap",
     "provider": "subq",
