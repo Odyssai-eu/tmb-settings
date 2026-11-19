@@ -1,7 +1,7 @@
 {
   "decider_model": null,
   "name": "setting",
-  "updated": "2026-11-18",
+  "updated": "2026-11-19",
   "note": "Généré par l'onglet TMB Settings (bench runner) le 2026-09-23 depuis les évaluations A/C/P/T (juge fixe GLM 5.3 flash local). Règle cloud : best-of-all par axe (modèles cloud).",
   "default_axis": "code_general",
   "format": "coeos-settings/1",
@@ -66,7 +66,7 @@
       },
       "verified": true,
       "key": "creative",
-      "model": "glm",
+      "model": "muse-spark",
       "label": "Creative / long-form writing",
       "description": "Inventive writing: fiction, short story, tale, poem, song, screenplay, character dialogue, role-play, pastiche, personal text (private letter, wedding speech), stylistic rewriting of a literary text, and advertising creation (slogans, taglines, concept and copy for an ad campaign). The test: something is invented, a form or an idea. Not here if the text informs or reports on behalf of an organisation (article, newsletter, about page, internal communication, letter, report), even in a narrative tone (-> redac_pro); not here if the deliverable is code (-> code axes) or a specification (-> plan_spec).",
       "thinking": true
@@ -135,7 +135,7 @@
       },
       "verified": true,
       "key": "calc",
-      "model": "qwen4-max",
+      "model": "ling-flash",
       "label": "Calculation / structured data",
       "description": "Carry out a calculation or process numeric data: arithmetic, percentages, interest, statistics, unit conversions, numeric estimates, budget, spreadsheet and formulas, handling tables or structured data (CSV, JSON) without writing a program. Not here if the reasoning is logical or qualitative with no numbers to compute (-> reasoning), nor if a script that computes is requested (-> python or the language axis).",
       "thinking": false
@@ -177,7 +177,7 @@
       },
       "verified": true,
       "key": "debug",
-      "model": "qwen4-max",
+      "model": "deepseek-pro",
       "label": "Debug",
       "description": "Understand and fix a defect in existing code, in any language (except Swift): error message, stack trace, exception, unexpected behaviour, failing test, regression, memory leak, abnormal performance. The intent is to REPAIR or EXPLAIN a failure. Not here if the code is Swift (-> swift, the language wins), if new code is being written (-> language axis), or if the code works and should be restructured (-> refactoring). When the prompt places the model as an AGENT acting step by step in a session (tools listed, commands it ran and their output, 'your next action', 'are you done', what it should or should not touch), the request is about the agent's conduct -> agent_exec or agent_safety, even if a bug is involved.",
       "thinking": true
@@ -219,7 +219,7 @@
       },
       "verified": true,
       "key": "plan_decompo",
-      "model": "ling-flash",
+      "model": "muse-spark",
       "label": "Planning - decomposition",
       "description": "Break a goal into steps: project plan, task list, backlog, milestones, sequencing, work split, roadmap. The deliverable is an ordered list of steps. Not here if the detailed specification of a step is written for an implementer (-> plan_spec) or if the risks of a plan are judged (-> plan_judgment).",
       "thinking": true
@@ -233,7 +233,7 @@
       },
       "verified": true,
       "key": "plan_spec",
-      "model": "step",
+      "model": "muse-spark",
       "label": "Planning - handoff / spec",
       "description": "Write a specification for an implementer (human or agent): requirements document, acceptance criteria, handoff, implementation document, interface or API contract, data exchange formats and flows between software systems, data schema. Not here if the goal is only split into steps (-> plan_decompo), if a plan is judged (-> plan_judgment), or if it is a legal contract between parties (-> legal_complex).",
       "thinking": true
@@ -293,9 +293,9 @@
     }
   ],
   "models": {
-    "glm": {
-      "name": "glm-5.3-OR",
-      "or": "z-ai/glm-5.3",
+    "muse-spark": {
+      "name": "meta/muse-spark-1.3",
+      "or": "meta/muse-spark-1.3",
       "kind": "cloud"
     },
     "deepseek-flash": {
@@ -318,19 +318,14 @@
       "or": "deepseek/deepseek-v4-pro",
       "kind": "cloud"
     },
-    "minimax": {
-      "name": "minimax3 OR",
-      "or": "minimax/minimax-m3",
-      "kind": "cloud"
-    },
     "ling-flash": {
       "name": "ling-3.1-flash-OR",
       "or": "inclusionai/ling-3.1-flash",
       "kind": "cloud"
     },
-    "step": {
-      "name": "stepfun-step-5-preview",
-      "or": "stepfun/step-5-preview",
+    "minimax": {
+      "name": "minimax3 OR",
+      "or": "minimax/minimax-m3",
       "kind": "cloud"
     },
     "hy-2": {
